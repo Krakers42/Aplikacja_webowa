@@ -4,8 +4,7 @@
     font-optical-sizing: auto;
     font-size: 14px;
     font-style: normal;
-    --primary-color: ;
-    --secondary-color: ;
+    --primary-color: black;
 }
 
 .flex-column-center-center {
@@ -20,4 +19,69 @@
     flex-direction: row;
     justify-content: center;
     align-content: center;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    gap: 2em;
+    padding: 1em;
+    border-radius: 1em;
+}
+
+.logo {
+    width: 150px;
+    height: auto;
+}
+
+.content {
+    gap: 0.5em;
+}
+
+.login-form {
+    gap: 0.5em;
+}
+
+/* used to stylize paragraphs <p> */
+p {
+    margin:0;
+    padding: 1em;
+}
+
+h1 {
+    font-size: 32px;
+    font-weight: bold;
+    margin: 0;
+}
+
+h2 {
+    font-size: 22px;
+    font-weight: normal;
+    margin: 0;
+}
+
+#login_page {
+    height: 100vh;
+    background: rgb(120,197,244);
+    background: linear-gradient(130deg, rgba(120,197,244,1) 25%, rgba(5,66,103,1) 75%);
+}
+
+#register_page {
+    height: 100vh;
+    background: rgb(120,197,244);
+    background: linear-gradient(130deg, rgba(120,197,244,1) 25%, rgba(5,66,103,1) 75%);
+}
+
+#reset_password_page {
+    height: 100vh;
+    background: rgb(120,197,244);
+    background: linear-gradient(130deg, rgba(120,197,244,1) 25%, rgba(5,66,103,1) 75%);
+}
+
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
