@@ -2,7 +2,7 @@
 * {
     font-family: "Roboto", sans-serif;
     font-optical-sizing: auto;
-    font-size: 14px;
+    font-size: 18px;
     font-style: normal;
     --primary-color: black;
 }
@@ -30,7 +30,7 @@
 }
 
 .logo {
-    width: 150px;
+    pwidth: 150px;
     height: auto;
 }
 
@@ -40,6 +40,10 @@
 
 .login-form {
     gap: 0.5em;
+}
+
+.register-form {
+    gap: 0.5em
 }
 
 /* used to stylize paragraphs <p> */
@@ -60,28 +64,60 @@ h2 {
     margin: 0;
 }
 
-#login_page {
-    height: 100vh;
-    background: rgb(120,197,244);
-    background: linear-gradient(130deg, rgba(120,197,244,1) 25%, rgba(5,66,103,1) 75%);
-}
-
-#register_page {
-    height: 100vh;
-    background: rgb(120,197,244);
-    background: linear-gradient(130deg, rgba(120,197,244,1) 25%, rgba(5,66,103,1) 75%);
-}
-
-#reset_password_page {
-    height: 100vh;
-    background: rgb(120,197,244);
-    background: linear-gradient(130deg, rgba(120,197,244,1) 25%, rgba(5,66,103,1) 75%);
-}
-
 body {
     margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background: rgb(120,197,244);
+    background: linear-gradient(130deg, rgba(120,197,244,1) 25%, rgba(5,66,103,1) 75%);
+}
+
+.whole-input {
+    display: flex;
+    align-items: center;
+    background: white;
+    border-radius: 10px;
+    padding: 6px 8px;
+    border: 2px solid black;
+    box-shadow:
+      2px 2px 5px rgb(0 0 0 / 40%), /* drop shadow */
+      inset 1px 1px 3px rgb(0 0 0 / 40%); /* inner shadow */
+    width: 260px
+ 
+}
+
+.whole-input > .icon {
+    font-size: 28px;
+    margin-right: 8px;
+}
+
+.whole-input > input {
+    border: none;
+    outline: none;
+    flex: 1;
+    background: #00000000;
+    letter-spacing: 3px;
+}
+
+input::placeholder {
+    color: rgb(131 0 0 / 25%);
+}
+
+button {
+    width: 280px;
+    height: 55px;
+    background: #83C5EE;
+    border-radius: 10px;
+    border: 2px solid black;
+    letter-spacing: 3px;
+    color: white;
+    transition: transform 0.2s ease-in-out;
+    box-shadow: 2px 2px 5px rgb(0 0 0 / 40%); /* drop shadow */
+    cursor: pointer;
+}
+
+button:hover {
+    transform: scale(1.05);
 }
