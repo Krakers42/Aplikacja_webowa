@@ -29,21 +29,38 @@
     border-radius: 1em;
 }
 
+@media (max-width: 600px) {
+    .container {
+        flex-direction: column; /*logo above the form*/
+    }
+}
+
 .logo {
-    pwidth: 150px;
-    height: auto;
+    position: relative;
+    display: inline-block;
+    width: 220px;
+    height: 300px;
+    background-size: contain;
 }
 
-.content {
-    gap: 0.5em;
+@keyframes scaleAnimation {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1); 
+    }
 }
 
-.login-form {
-    gap: 0.5em;
+.logo:hover {
+    animation: scaleAnimation 2s infinite ease-in-out; 
 }
 
-.register-form {
-    gap: 0.5em
+.content, .login-form, .register-form, .reset-password-form, .reset_password_page {
+    gap: 1em;
 }
 
 /* used to stylize paragraphs <p> */
@@ -61,6 +78,13 @@ h1 {
 h2 {
     font-size: 22px;
     font-weight: normal;
+    margin: 0;
+    word-break: break-word;
+    text-align: center;
+}
+
+h3 {
+    font-size: 24px;
     margin: 0;
 }
 
@@ -121,3 +145,16 @@ button {
 button:hover {
     transform: scale(1.05);
 }
+
+.links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+}
+
+.links a {
+    color: white;
+    text-decoration: none;
+}
+
