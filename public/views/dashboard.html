@@ -1,5 +1,4 @@
-﻿<!DOCTYPE html>
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
@@ -10,46 +9,49 @@
     <script src="https://kit.fontawesome.com/68d18855ea.js" crossorigin="anonymous"></script>
     <link rel="icon" href="../images/favicon.svg" type="image/svg+xml">
 
-    <link href="../styles/main.css" rel="stylesheet" />
     <link href="../styles/dashboard.css" rel="stylesheet" />
+    <link href="../styles/aside.css" rel="stylesheet" />
 
     <title>DASHBOARD</title>
 </head>
 
 <body>
-    
+
     <aside>
         <h2>Bike Base</h2>
         <nav class="flex-row-center-center">
-            <ul>
-                <li>
-                    <i class="fa-solid fa-gauge flex-column-center-center"></i>
-                    <a href="dashboard.html">Dashboard</a>
-                </li>
-                <li>
-                    <i class="fa-solid fa-bicycle flex-column-center-center"></i>
-                    <a href="bikes.html">Bikes</a>
-                </li>
-                <li>
-                    <i class="fa-solid fa-screwdriver-wrench flex-column-center-center"></i>
-                    <a href="gear_parts.html">Gear & Parts</a>
-                </li>
-                <li>
-                    <i class="fa-solid fa-image flex-column-center-center"></i>
-                    <a href="photos.html">Photos</a>
-                </li>
-                <li>
-                    <i class="fa-solid fa-road flex-column-center-center"></i>
-                    <a href="trips.html">Trips</a>
-                </li>
-                <li>
-                    <i class="fa-solid fa-user flex-column-center-center"></i>
-                    <a href="account.html">Account</a>
-                </li>
+            <ul class="flex-column-center-center">
+                <a href="dashboard.html" class="menu-link flex-row-center-center">
+                    <i class="fa-solid fa-gauge"></i>
+                    Dashboard
+                </a>
+                <a href="bikes.html" class="menu-link flex-row-center-center">
+                    <i class="fa-solid fa-bicycle"></i>
+                    Bikes
+                </a>
+                <a href="gear_parts.html" class="menu-link flex-row-center-center">
+                    <i class="fa-solid fa-screwdriver-wrench"></i>
+                    Gear & Parts
+                </a>
+                <a href="photos.html" class="menu-link flex-row-center-center">
+                    <i class="fa-solid fa-image"></i>
+                    Photos
+                </a>
+                <a href="trips.html" class="menu-link flex-row-center-center">
+                    <i class="fa-solid fa-road"></i>
+                    Trips
+                </a>
+                <a href="account.html" class="menu-link flex-row-center-center">
+                    <i class="fa-solid fa-user"></i>
+                    Account
+                </a>
             </ul>
         </nav>
-        <button>Logout</button>
+
+        <button onclick="window.location.href='login.html'">Logout</button>
     </aside>
+
+    <i id="hamburger_menu" class="fa-solid fa-bars"></i>
 
     <main>
         <h1>DASHBOARD</h1>
@@ -83,7 +85,7 @@
 
         </section>
     </main>
-
+    <script src="../scripts/main.js"></script>
 </body>
 
 </html>

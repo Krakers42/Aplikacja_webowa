@@ -1,0 +1,130 @@
+﻿* {
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-size: 18px;
+    font-style: normal;
+    --primary-color: black;
+}
+
+#hamburger_menu {
+    display: none;
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    font-size: 40px;
+    color: black;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+@media (max-width: 600px) {
+    #hamburger_menu {
+        display: block;
+    }
+
+    aside {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 70%;
+        max-width: 300px;
+        height: 100vh;
+        background: linear-gradient(130deg, rgba(120,197,244,1) 25%, rgba(5,66,103,1) 75%);
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        transition: left 0.3s ease;
+        z-index: 999;
+    }
+
+        aside.open {
+            left: 0;
+        }
+
+    body {
+        grid-template-columns: 1fr;
+    }
+
+    main h1 {
+        margin-top: 100px;
+    }
+
+    aside h2 {
+        margin-top: 100px;
+    }
+}
+
+/*menu on the left side*/
+aside {
+    height: 100vh;
+    background: linear-gradient(130deg, rgba(120,197,244,1) 25%, rgba(5,66,103,1) 75%);
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+}
+
+    aside > h2 {
+        font-size: 60px;
+        font-weight: 800;
+        text-align: center;
+    }
+
+    aside > nav {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        align-items: center;
+        width: 90%;
+    }
+
+        aside > nav > ul {
+            list-style: none;
+            padding: 0;
+            width: 100%;
+        }
+
+            aside > nav > ul > a {
+                display: flex;
+                align-items: center;
+                width: 100%;
+            }
+
+.menu-link {
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    gap: 10px;
+    box-shadow: 2px 2px 5px rgb(0 0 0 / 40%); /* drop shadow */
+    transition: background 0.2s;
+    transition: transform 0.2s ease-in-out;
+    box-sizing: border-box;
+}
+
+    .menu-link:hover {
+        background-color: #a1d3fd;
+        transform: scale(1.05);
+    }
+
+    .menu-link > i {
+        width: 20px;
+        text-align: center;
+    }
+
+aside > button {
+    margin-top: auto;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 25px;
+    cursor: pointer;
+    padding: 15px;
+}

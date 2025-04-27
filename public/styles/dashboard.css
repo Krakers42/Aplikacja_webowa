@@ -1,3 +1,63 @@
-﻿body
-{
+body {
+    margin: 0;
+    display: grid;
+    height: 100vh;
+    overflow-y: auto;
+    grid-template-columns: minmax(180px, 380px) 1fr;
+    background: rgb(184 225 250 / 50%);
+}
+
+
+/* === MAIN DASHBOARD === */
+
+main {
+    flex: 1;
+    height: 100vh;
+    overflow-y: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+    box-sizing:border-box;
+    max-width: 100%;
+}
+
+main h1 {
+    text-align: center;
+    font-size: 50px;
+    margin-bottom: 40px;
+}
+
+section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    justify-items: center;
+    max-width: 100%;
+    padding-bottom: 10px;
+}
+
+@media (max-width: 740px) {
+    section {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+}
+
+section > div {
+    background-color: white;
+    padding: 15px;
+    border-radius: 20px;
+    text-align: center;
+    width: 300px;
+    height: 300px;
+}
+
+@media (max-width: 740px) {
+    section > div {
+        width: 200px;
+        height: 200px;
+    }
+}
+
+section > div > h3 {
+    font-size: 25px;
+    margin: 0;
 }

@@ -16,6 +16,8 @@ document.addEventListener("DOMContentLoaded", () => {
     new LoginHandler(".login-form");
 });
 
+
+
 class RegisterHandler {
     constructor(formSelector) {
         this.form = document.querySelector(formSelector);
@@ -34,6 +36,8 @@ document.addEventListener("DOMContentLoaded", () => {
     new RegisterHandler(".register-form");
 });
 
+
+
 class ChangePasswordHandler {
     constructor(formSelector) {
         this.form = document.querySelector(formSelector);
@@ -50,4 +54,11 @@ class ChangePasswordHandler {
 
 document.addEventListener("DOMContentLoaded", () => {
     new ChangePasswordHandler(".reset-password-form");
+});
+
+
+
+/*hamburger_menu*/
+document.getElementById('hamburger_menu').addEventListener('click',  function() {
+    document.querySelector('aside').classList.toggle('open');    
 });
