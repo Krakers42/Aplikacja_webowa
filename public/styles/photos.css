@@ -1,0 +1,67 @@
+body {
+    margin: 0;
+    display: grid;
+    height: 100vh;
+    overflow-y: auto;
+    background: rgb(184 225 250 / 50%);
+}
+
+#delete-photo {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    background-color: rgb(6 123 193 );
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+#drop-area {
+    border: 2px dashed;
+    border-radius: 1rem;
+    padding: 1rem;
+    width: 90%;
+    margin-bottom: 10px;
+    margin-top: auto;
+    text-align: center;
+    cursor: pointer;
+    background-color: #f9f9f9;
+    transition: background-color 0.3s ease;
+}
+
+#drop-area:hover {
+    background-color: #a1cffa;
+}
+
+#gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 20px;
+    width: 100%;
+    max-width: 1000px;
+}
+
+#gallery > img {
+    width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+#gallery img:hover {
+    transform: scale(1.05);
+}
+
+.fullscreen {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 90vh;
+    max-height: 90vh;
+    z-index: 9999;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}

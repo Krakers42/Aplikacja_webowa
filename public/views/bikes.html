@@ -1,11 +1,99 @@
-﻿<!DOCTYPE html>
-
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <title></title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/68d18855ea.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="../images/favicon.svg" type="image/svg+xml">
+
+    <link href="../styles/bikes.css" rel="stylesheet" />
+    <link href="../styles/aside_main.css" rel="stylesheet" />
+
+    <title>BIKES</title>
 </head>
+
 <body>
 
+    <aside>
+        <h2>Bike Base</h2>
+        <nav class="flex-row-center-center">
+            <ul class="flex-column-center-center">
+                <a href="dashboard.html" class="menu-link flex-row-center-center">
+                    <i class="fa-solid fa-gauge"></i>
+                    Dashboard
+                </a>
+                <a href="bikes.html" class="menu-link flex-row-center-center">
+                    <i class="fa-solid fa-bicycle"></i>
+                    Bikes
+                </a>
+                <a href="gear_parts.html" class="menu-link flex-row-center-center">
+                    <i class="fa-solid fa-screwdriver-wrench"></i>
+                    Gear & Parts
+                </a>
+                <a href="photos.html" class="menu-link flex-row-center-center">
+                    <i class="fa-solid fa-image"></i>
+                    Photos
+                </a>
+                <a href="trips.html" class="menu-link flex-row-center-center">
+                    <i class="fa-solid fa-road"></i>
+                    Trips
+                </a>
+                <a href="account.html" class="menu-link flex-row-center-center">
+                    <i class="fa-solid fa-user"></i>
+                    Account
+                </a>
+            </ul>
+        </nav>
+
+        <button onclick="window.location.href='login.html'">Logout</button>
+    </aside>
+
+    <i id="hamburger_menu" class="fa-solid fa-bars"></i>
+
+    <main>
+        <h1>BIKES</h1>
+
+        <section>
+            <div class="bike-card">
+                <div class="bike-actions">
+                    <button class="edit-bike">Edit</button>
+                    <button class="delete-bike">Delete</button>
+                </div>
+
+                <div class="bike-visual" >
+                    <h3>Kross Esker 6.0</h3>
+                    <img src="../images/esker.jpg" alt="Kross Esker 6.0" />
+                </div>
+            </div>
+
+            <div class="bike-text">
+                <p>The KROSS Esker 6.0 is a versatile gravel bike that is perfect for both long trips and everyday rides. Equipped with a second-generation aluminum frame and a carbon fork, it provides durability and comfort while maintaining low weight. The Shimano GRX drive in a 2x12 system and hydraulic disc brakes will give you full control on every trail - both on fast asphalt sections and on demanding gravel roads. KROS Esker 6.0 is a bike created for people who want to discover new routes and value high quality equipment.</p>
+            </div>
+
+            <div class="bike-card">
+                <div class="bike-actions">
+                    <button class="edit-bike">Edit</button>
+                    <button class="delete-bike">Delete</button>
+                </div>
+
+                <div class="bike-visual">
+                    <h3>Marin Alpine Trail 7</h3>
+                    <img src="../images/alpine-trail-7.jpg" alt="Marin Alpine Trail 7" />
+                </div>
+            </div>
+
+            <div class="bike-text">
+                <p>Marin Alpine Trail 7 is a 29-inch Full-Suspension MTB designed for enduro trails. Its versatile capabilities are perfect for all-day riding. The aluminum frame with geometry that fits the latest trends and the full RockShox suspension with the DebonAir air system (150/160 mm travel) make it one of the best models for aggressive singletrack descents in its price class.</p>
+            </div>
+
+        </section>
+
+    </main>
+    <button id="add-bike">Add Bike +</button>
+    <script src="../scripts/main.js"></script>
 </body>
+
 </html>

@@ -62,12 +62,6 @@
     gap: 1em;
 }
 
-/* used to stylize paragraphs <p> */
-p {
-    margin:0;
-    padding: 1em;
-}
-
 h1 {
     font-size: 32px;
     font-weight: bold;
