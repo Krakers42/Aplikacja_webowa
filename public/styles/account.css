@@ -1,0 +1,35 @@
+body {
+    margin: 0;
+    display: grid;
+    grid-template-columns: minmax(180px, 380px) 1fr;
+    height: 100vh;
+    overflow-y: auto;
+    background: rgb(184 225 250 / 50%);
+}
+
+#user-info {
+    background-color: white;
+    border-radius: 12px;
+    padding: 5px;
+    max-width: 700px;
+    margin: 0 auto;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+h3 {
+    text-align: center;
+    font-size: 24px;
+}
+
+table, th, td {
+    border: 1px solid #ccc;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+.hidden {
+  display: none;
+}

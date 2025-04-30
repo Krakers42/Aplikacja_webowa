@@ -1,0 +1,20 @@
+﻿body {
+    margin: 0;
+    display: grid;
+    grid-template-columns: minmax(180px, 380px) 1fr;
+    height: 100vh;
+    overflow-y: auto;
+    background: rgb(184 225 250 / 50%);
+}
+
+#add-gear-parts {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    background-color: rgb(6 123 193 );
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    z-index: 9999;
+}

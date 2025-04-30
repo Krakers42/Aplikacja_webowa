@@ -1,6 +1,7 @@
 body {
     margin: 0;
     display: grid;
+    grid-template-columns: minmax(180px, 380px) 1fr;
     height: 100vh;
     overflow-y: auto;
     background: rgb(184 225 250 / 50%);
@@ -15,7 +16,7 @@ body {
     border-radius: 20px;
     padding: 10px 20px;
     cursor: pointer;
-    z-index: 1000;
+    z-index: 9999;
 }
 
 #drop-area {
@@ -51,7 +52,7 @@ body {
     transition: transform 0.2s ease;
 }
 
-#gallery img:hover {
+#gallery img:hover:not(.fullscreen) {
     transform: scale(1.05);
 }
 
@@ -62,6 +63,8 @@ body {
     transform: translate(-50%, -50%);
     max-width: 90vh;
     max-height: 90vh;
-    z-index: 9999;
+    object-fit: contain;
+    z-index: 9998;
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.85); /*background shadow*/
 }
