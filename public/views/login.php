@@ -7,9 +7,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/68d18855ea.js" crossorigin="anonymous"></script>
-    <link rel="icon" href="../images/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="public/images/favicon.svg" type="image/svg+xml">
 
-    <link href="../styles/main.css" rel="stylesheet" />
+    <link href="public/styles/main.css" rel="stylesheet" />
 
     <title>LOGIN</title>
 </head>
@@ -17,7 +17,7 @@
 <body id="login_page" class="flex-row-center-center">
     
     <div class="container">
-        <img src="../images/logo.svg" class="logo"/>
+        <img src="public/images/logo.svg" class="logo"/>
 
         <div class="content flex-column-center-center">
             <h1>LOGIN</h1>
@@ -43,6 +43,6 @@
             </form>
         </div>
     </div>
-    <script src="../scripts/main.js"></script>
+    <script src="public/scripts/main.js"></script>
 </body>
 </html>
