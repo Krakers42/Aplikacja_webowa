@@ -48,7 +48,7 @@ class ChangePasswordHandler {
 
     handleSubmit(event) {
         event.preventDefault();
-        window.location.href = "login.html";
+        window.location.href = "login.php";
     }
 }
 

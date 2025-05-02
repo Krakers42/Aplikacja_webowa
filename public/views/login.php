@@ -15,7 +15,6 @@
 </head>
 
 <body id="login_page" class="flex-row-center-center">
-    
     <div class="container">
         <img src="public/images/logo.svg" class="logo"/>
 
@@ -23,6 +22,15 @@
             <h1>LOGIN</h1>
             <h2>Welcome back!</h2>
             <form class="login-form flex-column-center-center">
+                <div class="messages">
+                    <?php if (isset($messages)) {
+                        foreach ($messages as $message) {
+                            echo $messages;
+                        }
+                    }
+                    ?>
+                </div>
+
                 <div class="whole-input">
                     <i class="icon fa-solid fa-envelope"></i>
                     <input type="email" placeholder="email" />

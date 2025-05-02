@@ -20,13 +20,14 @@ body {
 }
 
 #drop-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border: 2px dashed;
     border-radius: 1rem;
     padding: 1rem;
     width: 90%;
-    margin-bottom: 10px;
-    margin-top: auto;
-    text-align: center;
+    margin: 20px auto;
     cursor: pointer;
     background-color: #f9f9f9;
     transition: background-color 0.3s ease;
