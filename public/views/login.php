@@ -21,11 +21,11 @@
         <div class="content flex-column-center-center">
             <h1>LOGIN</h1>
             <h2>Welcome back!</h2>
-            <form class="login-form flex-column-center-center">
+            <form class="login-form flex-column-center-center" action="login" method="POST">
                 <div class="messages">
                     <?php if (isset($messages)) {
                         foreach ($messages as $message) {
-                            echo $messages;
+                            echo $message;
                         }
                     }
                     ?>
@@ -33,12 +33,12 @@
 
                 <div class="whole-input">
                     <i class="icon fa-solid fa-envelope"></i>
-                    <input type="email" placeholder="email" />
+                    <input type="email" name="email" placeholder="email" />
                 </div>
 
                 <div class="whole-input">
                     <i class="icon fa-solid fa-door-open"></i>
-                    <input type="password" placeholder="password" />
+                    <input type="password" name="password" placeholder="password" />
                 </div>
 
                 <button type="submit"><i>CONTINUE</i></button>

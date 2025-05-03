@@ -25,7 +25,7 @@
                     <i class="fa-solid fa-gauge"></i>
                     Dashboard
                 </a>
-                <a href="bikes.html" class="menu-link flex-row-center-center">
+                <a href="bikes.php" class="menu-link flex-row-center-center">
                     <i class="fa-solid fa-bicycle"></i>
                     Bikes
                 </a>
