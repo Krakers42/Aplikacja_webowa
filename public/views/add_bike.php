@@ -21,7 +21,7 @@
         <h2>Bike Base</h2>
         <nav class="flex-row-center-center">
             <ul class="flex-column-center-center">
-                <a href="dashboard.html" class="menu-link flex-row-center-center">
+                <a href="dashboard.php" class="menu-link flex-row-center-center">
                     <i class="fa-solid fa-gauge"></i>
                     Dashboard
                 </a>
