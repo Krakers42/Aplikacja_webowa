@@ -38,4 +38,8 @@ class DefaultController extends AppController {
     public function account() {
         $this->render('account');
     }
+
+    public function add_bike() {
+        $this->render('add_bike');
+    }
 }

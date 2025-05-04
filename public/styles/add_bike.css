@@ -1,0 +1,82 @@
+body {
+    margin: 0;
+    display: grid;
+    height: 100vh;
+    overflow-y: auto;
+    grid-template-columns: minmax(180px, 380px) 1fr;
+    background: rgb(184 225 250 / 50%);
+}
+
+
+.add-bike {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 40px 20px;
+}
+
+.add-bike form {
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 600px;
+}
+
+.add-bike form > textarea {
+    resize: vertical;
+}
+
+.add-bike form input[type="text"],
+.add-bike form textarea,
+.add-bike form input[type="file"] {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    transition: border-color 0.3s ease;
+    font-family: inherit;
+    background-color: #fafafa;
+}
+
+.add-bike form input[type="text"]:focus,
+.add-bike form textarea:focus,
+.add-bike form input[type="file"]:focus {
+    border-color: #067bc1;
+    outline: none;
+}
+
+.add-bike form label {
+    font-weight: 600;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.add-bike form button[type="submit"] {
+    align-self: flex-end;
+    background-color: #067bc1;
+    color: #ffffff;
+    border: none;
+    padding: 12px 25px;
+    font-size: 16px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-bike form button[type="submit"]:hover {
+    background-color: #055b92;
+}
+
+@media (max-width: 600px) {
+    .add-bike form {
+        padding: 30px 20px;
+    }
+}

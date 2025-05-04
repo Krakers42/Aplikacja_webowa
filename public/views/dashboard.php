@@ -16,40 +16,7 @@
 </head>
 
 <body>
-
-    <aside>
-        <h2>Bike Base</h2>
-        <nav class="flex-row-center-center">
-            <ul class="flex-column-center-center">
-                <a href="dashboard.html" class="menu-link flex-row-center-center">
-                    <i class="fa-solid fa-gauge"></i>
-                    Dashboard
-                </a>
-                <a href="bikes.php" class="menu-link flex-row-center-center">
-                    <i class="fa-solid fa-bicycle"></i>
-                    Bikes
-                </a>
-                <a href="gear_parts.html" class="menu-link flex-row-center-center">
-                    <i class="fa-solid fa-screwdriver-wrench"></i>
-                    Gear & Parts
-                </a>
-                <a href="photos.html" class="menu-link flex-row-center-center">
-                    <i class="fa-solid fa-image"></i>
-                    Photos
-                </a>
-                <a href="trips.html" class="menu-link flex-row-center-center">
-                    <i class="fa-solid fa-road"></i>
-                    Trips
-                </a>
-                <a href="account.html" class="menu-link flex-row-center-center">
-                    <i class="fa-solid fa-user"></i>
-                    Account
-                </a>
-            </ul>
-        </nav>
-
-        <button onclick="window.location.href='login.html'">Logout</button>
-    </aside>
+    <?php include 'aside.php'; ?>
 
     <i id="hamburger_menu" class="fa-solid fa-bars"></i>
 

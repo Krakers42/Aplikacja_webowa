@@ -22,6 +22,6 @@ Routing::get('trips', 'DefaultController');
 Routing::get('account', 'DefaultController');
 
 Routing::post('login', 'SecurityController');
-Routing::post('addBike', 'BikeController');
+Routing::post('add_bike', 'BikeController');
 
 Routing::run($path);
