@@ -7,3 +7,4 @@ document.getElementById('hamburger_menu').addEventListener('click',  function() 
 document.getElementById('add-bike').addEventListener('click', () => {
     window.location.href = '/add_bike';
 });
+
