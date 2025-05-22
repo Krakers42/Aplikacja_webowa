@@ -1,6 +1,8 @@
 <?php
 
 require_once 'AppController.php';
+
+
 class DefaultController extends AppController {
 
     public function index() {
@@ -20,7 +22,13 @@ class DefaultController extends AppController {
     }
 
     public function bikes() {
-        $this->render('bikes');
+        try {
+            $bike_cards = [0, 1, 2, 3, 4];
+            $this->render('bikes', ['bike_cards' => $bike_cards]);
+        }
+        catch (Exception $e) {
+            $this->error404($e->getMessage());
+        }
     }
 
     public function gear_parts() {
@@ -41,5 +49,10 @@ class DefaultController extends AppController {
 
     public function add_bike() {
         $this->render('add_bike');
+    }
+
+    public function error404(string $message = '') {
+        http_response_code(404);
+        $this->render('404', ['error' => $message]);
     }
 }

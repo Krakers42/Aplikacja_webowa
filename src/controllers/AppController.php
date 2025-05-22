@@ -16,7 +16,6 @@ class AppController {
 
     protected function render(string $template = null, array $variables = []) {
         $templatePath = 'public/views/'.$template.'.php';
-        $output = "Error 404: File not found";
 
         if (file_exists($templatePath)) {
             extract($variables);
@@ -24,7 +23,16 @@ class AppController {
             ob_start();
             include $templatePath;
             $output = ob_get_clean();
+            print $output;
+        } else {
+            http_response_code(404);
+
+            if ($template !== '404') {
+                $errorController = new DefaultController();
+                $errorController->error404();
+            } else {
+                print "404 - Page not found."; // Even the 404.php is missing
+            }
         }
-        print $output;
     }
 }

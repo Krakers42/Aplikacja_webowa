@@ -23,6 +23,30 @@
     <main>
         <h1>BIKES</h1>
 
+        <?php if (isset($bike_cards)): ?>
+            <section>
+                <?php foreach ($bike_cards as $key => $value): ?>
+                    <?php if (isset($bike)): ?>
+                        <div class="bike-card">
+                            <div class="bike-actions">
+                                <button class="edit-bike">Edit</button>
+                                <button class="delete-bike">Delete</button>
+                            </div>
+
+                            <div class="bike-visual">
+                                <h3><?= htmlspecialchars($bike->getTitle()) ?></h3>
+                                <img src="public/uploads/<?= htmlspecialchars($bike->getImage()) ?>" alt="<?= htmlspecialchars($bike->getTitle()) ?>" />
+                            </div>
+
+                            <div class="bike-text">
+                                <p><?= nl2br(htmlspecialchars($bike->getDescription())) ?></p>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </section>
+        <?php endif; ?>
+
         <section>
             <div class="bike-card">
                 <div class="bike-actions">
@@ -55,6 +79,24 @@
                     <p>Marin Alpine Trail 7 is a 29-inch Full-Suspension MTB designed for enduro trails. Its versatile capabilities are perfect for all-day riding. The aluminum frame with geometry that fits the latest trends and the full RockShox suspension with the DebonAir air system (150/160 mm travel) make it one of the best models for aggressive singletrack descents in its price class.</p>
                 </div>
             </div>
+
+            <?php if (isset($bike)): ?>
+                <div class="bike-card">
+                    <div class="bike-actions">
+                        <button class="edit-bike">Edit</button>
+                        <button class="delete-bike">Delete</button>
+                    </div>
+
+                    <div class="bike-visual">
+                        <h3><?= htmlspecialchars($bike->getTitle()) ?></h3>
+                        <img src="public/uploads/<?= htmlspecialchars($bike->getImage()) ?>" alt="<?= htmlspecialchars($bike->getTitle()) ?>" />
+                    </div>
+
+                    <div class="bike-text">
+                        <p><?= nl2br(htmlspecialchars($bike->getDescription())) ?></p>
+                    </div>
+                </div>
+            <?php endif; ?>
 
         </section>
 

@@ -16,15 +16,28 @@ class Routing extends AppController {
     }
 
     public static function run($url) {
-        $action = explode('/', $url)[0];
+        $urlParts = explode('/', $url);
+        $action = $urlParts[0];
 
         if(!array_key_exists($action, self::$routes)) {
-            die("There is no such address");
+            $controller = new DefaultController();
+            $controller->error404();
+            return;
         }
 
         $controller = self::$routes[$action];
         $object = new $controller;
-        $object->$action();
+
+        $actionMethod = $urlParts[1] ?? $action;
+        $id = $urlParts[2] ?? null;
+
+        if (!method_exists($object, $actionMethod)) {
+            $default = new DefaultController();
+            $default->error404();
+            return;
+        }
+
+        $object->$actionMethod($id);
     }
 
 }

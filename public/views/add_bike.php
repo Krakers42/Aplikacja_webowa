@@ -33,7 +33,7 @@
                     ?>
                 </div>
 
-                <input name="bike" type="text" placeholder="bike">
+                <input name="title" type="text" placeholder="bike">
                 <textarea name="description" rows="6" placeholder="description"></textarea>
 
                 <input type="file" name="file">
