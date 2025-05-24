@@ -25,7 +25,7 @@
 
         <?php if (isset($bike_cards)): ?>
             <section>
-                <?php foreach ($bike_cards as $key => $value): ?>
+                <?php foreach ($bike_cards as $bike): ?>
                     <?php if (isset($bike)): ?>
                         <div class="bike-card">
                             <div class="bike-actions">
@@ -34,12 +34,15 @@
                             </div>
 
                             <div class="bike-visual">
-                                <h3><?= htmlspecialchars($bike->getTitle()) ?></h3>
-                                <img src="public/uploads/<?= htmlspecialchars($bike->getImage()) ?>" alt="<?= htmlspecialchars($bike->getTitle()) ?>" />
+                                <h3><?= htmlspecialchars($bike['name']) ?></h3>
+                                <img
+                                        src="data:<?= htmlspecialchars($bike['image_mime']) ?>;base64,<?= base64_encode($bike['image']) ?>"
+                                        alt="<?= htmlspecialchars($bike['name']) ?>"
+                                />
                             </div>
 
                             <div class="bike-text">
-                                <p><?= nl2br(htmlspecialchars($bike->getDescription())) ?></p>
+                                <p><?= htmlspecialchars($bike['description']) ?></p>
                             </div>
                         </div>
                     <?php endif; ?>

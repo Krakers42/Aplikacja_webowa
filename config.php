@@ -24,7 +24,7 @@ function loadEnv(string $path)
 
 loadEnv(__DIR__ . '/.env');
 
-define('USERNAME', $_ENV['USERNAME']);
-define('PASSWORD', $_ENV['PASSWORD']);
-define('HOST', $_ENV['HOST']);
-define('DATABASE', $_ENV['DATABASE']);
+define('USERNAME', $_ENV['DB_USERNAME']);
+define('PASSWORD', $_ENV['DB_PASSWORD']);
+define('HOST', $_ENV['DB_HOST']);
+define('DATABASE', $_ENV['DB_DATABASE']);

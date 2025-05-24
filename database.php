@@ -3,12 +3,15 @@
 require_once "config.php";
 
 class Database {
+    private static ?Database $instance = null;
+    private ?PDO $connection = null;
+
     private $username;
     private $password;
     private $host;
     private $database;
 
-    public function __construct()
+    private function __construct()
     {
         $this->username = USERNAME;
         $this->password = PASSWORD;
@@ -16,27 +19,34 @@ class Database {
         $this->database = DATABASE;
     }
 
-    public function connect()
-    {
-        try {
-            $conn = new PDO(
-                "pgsql:host=$this->host;port=5432;dbname=$this->database",
-                $this->username,
-                $this->password,
-                ["sslmode"  => "prefer"]
-            );
+    public static function getInstance(): Database{
+        if (self::$instance === null) {
+            self::$instance = new Database();
+        }
+        return self::$instance;
+    }
 
-            // set the PDO error mode to exception
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            return $conn;
+    public function connect(): PDO {
+        if ($this->connection === null) {
+            try {
+                $this->connection = new PDO(
+                    "pgsql:host=$this->host;port=5432;dbname=$this->database",
+                    $this->username,
+                    $this->password,
+                    ["sslmode" => "prefer"]
+                );
+
+                // set the PDO error mode to exception
+                $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            } catch (PDOException $e) {
+                throw new Exception("Database connection failed: " . $e->getMessage());
+            }
         }
-        catch(PDOException $e) {
-            throw new Exception("Database connection failed: " . $e->getMessage());
-        }
+        return $this->connection;
     }
 
     public function disconnect(){
-
+        $this->connection = null;
     }
 
 }

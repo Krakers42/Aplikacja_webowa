@@ -1,6 +1,7 @@
 <?php
 
 require_once 'AppController.php';
+require_once __DIR__.'/../repositories/BikeRepository.php';
 
 
 class DefaultController extends AppController {
@@ -23,7 +24,9 @@ class DefaultController extends AppController {
 
     public function bikes() {
         try {
-            $bike_cards = [0, 1, 2, 3, 4];
+            $bikeRepository = new BikeRepository();
+            $bike_cards = $bikeRepository->getBikes();
+
             $this->render('bikes', ['bike_cards' => $bike_cards]);
         }
         catch (Exception $e) {
