@@ -10,7 +10,12 @@ require_once __DIR__.'/../exceptions/UserNotFoundException.php';
 class UserRepository extends Repository {
     public function getUser(string $email): ?User {
         $stmt = $this->database->connect()->prepare(
-            "SELECT * FROM users WHERE email = :email");
+            "SELECT u.id_user, u.email, u.password, d.name, d.surname 
+                FROM users u 
+                JOIN users_details d ON 
+                u.id_user_details = d.id_user_details 
+                WHERE u.email = :email
+        ");
         $stmt->bindParam(':email', $email, \PDO::PARAM_STR);
         $stmt->execute();
 
@@ -21,6 +26,7 @@ class UserRepository extends Repository {
         }
 
         return new User(
+            $user['id_user'],
             $user['email'],
             $user['password'],
             $user['name'],

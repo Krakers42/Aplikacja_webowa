@@ -7,11 +7,24 @@ class Bike
     private $description;
     private $image;
 
-    public function __construct($title, $description, $image)
+    private $image_type;
+
+    public function getImageType(): string
+    {
+        return $this->image_type;
+    }
+
+    public function setImageType(): string
+    {
+        return $this->image_type;
+    }
+
+    public function __construct($title, $description, $image, $image_type)
     {
         $this->title = $title;
         $this->description = $description;
         $this->image = $image;
+        $this->image_type = $image_type;
     }
 
     public function getTitle(): string

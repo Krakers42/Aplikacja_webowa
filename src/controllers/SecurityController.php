@@ -3,6 +3,7 @@
 require_once 'AppController.php';
 require_once __DIR__.'/../models/User.php';
 require_once __DIR__.'/../repositories/UserRepository.php';
+require_once __DIR__.'/../../Routing.php';
 
 class SecurityController extends AppController {
     public function login() {
@@ -30,9 +31,12 @@ class SecurityController extends AppController {
             return $this->render('login', ['messages' => ['Wrong password!']]);
         }
 
-        return $this->render('dashboard');
-
-        $url = "http://$_SERVER[HTTP_HOST]";
-        header("Location: {$url}/projects");
+        $_SESSION['user'] = [
+            'email' => $user->getEmail(),
+            'name' => $user->getName(),
+            'surname' => $user->getSurname(),
+        ];
+        header("Location: /dashboard");
+        exit();
     }
 }

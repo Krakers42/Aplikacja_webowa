@@ -5,6 +5,7 @@ use models\Bike;
 require_once 'AppController.php';
 require_once __DIR__ . '/../models/User.php';
 require_once __DIR__. '/../models/Bike.php';
+require_once __DIR__. '/../repositories/BikeRepository.php';
 
 class BikeController extends AppController
 {
@@ -12,6 +13,18 @@ class BikeController extends AppController
     const SUPPORTED_FILE_TYPES = ['image/png', 'image/jpeg'];
     const UPLOAD_DIRECTORY = '/../public/uploads/';
     private $messages = [];
+    private $bikeRepository;
+
+    /**
+     * @param $bikeRepository
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->bikeRepository = new BikeRepository();
+    }
+
+
     public function add_bike() {
         if (
             $this->isPost()
@@ -26,6 +39,7 @@ class BikeController extends AppController
             );
 
             $bike = new Bike($_POST['title'], $_POST['description'], $_FILES['file']['name']);
+            $this->bikeRepository->addBike($bike);
 
             return $this->render('bikes', ['messages' => $this->messages, 'bike' => $bike]);
         }
