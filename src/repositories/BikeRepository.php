@@ -6,36 +6,42 @@ require_once 'Repository.php';
 require_once __DIR__.'/../models/Bike.php';
 
 class BikeRepository extends Repository {
-    public function getBikes(int $id_bike_card): ?Bike{
+    public function getBikesByUser(int $id_user): array
+    {
         $stmt = $this->database->connect()->prepare(
-            'SELECT * FROM public.bike_cards WHERE id_bike_card = id_bike_card'
+            'SELECT * FROM public.bike_cards WHERE id_user = :id_user'
         );
-        $stmt->bindParam(':id_bike_card', $id_bike_card, \PDO::PARAM_INT);
+        $stmt->bindParam(':id_user', $id_user, PDO::PARAM_INT);
         $stmt->execute();
 
-        $bike = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $bikesData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $bikes = [];
 
-        if(!$bike) {
+        foreach ($bikesData as $bike) {
+            $bikes[] = new Bike(
+                $bike['id_user'],
+                $bike['name'],
+                $bike['description'],
+                $bike['photo'],
+                $bike['image_type'],
+            );
+        }
+        if (!$bikes) {
             throw new BikeNotFoundException("Bike not found.");
         }
 
-        return new Bike(
-            $bike['name'],
-            $bike['description'],
-            $bike['image_type'],
-            $bike['photo'],
-        );
+        return $bikes;
     }
+
 
     public function addBike(Bike $bike): void{
         $stmt = $this->database->connect()->prepare( '
-            INSERT INTO bike_cards (name, description, image_type, photo)
+            INSERT INTO bike_cards (id_user, name, description, image_type, photo)
             VALUES (?, ?, ?, ?, ?)
         ');
 
-        $assignedById = 1;
-
         $stmt->execute([
+            $bike->getUserId(),
             $bike->getTitle(),
             $bike->getDescription(),
             $bike->getImageType(),

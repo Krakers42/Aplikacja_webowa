@@ -15,9 +15,6 @@ class BikeController extends AppController
     private $messages = [];
     private $bikeRepository;
 
-    /**
-     * @param $bikeRepository
-     */
     public function __construct()
     {
         parent::__construct();
@@ -38,7 +35,20 @@ class BikeController extends AppController
                 dirname(__DIR__).self::UPLOAD_DIRECTORY.$_FILES['file']['name']
             );
 
-            $bike = new Bike($_POST['title'], $_POST['description'], $_FILES['file']['name']);
+            if(!isset($_SESSION['user'])) {
+                return $this->render('login', ['messages' => ['You must be logged in to complete this task.']]);
+            }
+
+            $userId = $_SESSION['user']['id_user'];
+
+            $bike = new Bike(
+                $userId,
+                $_POST['title'],
+                $_POST['description'],
+                file_get_contents($_FILES['file']['tmp_name']),
+                $_FILES['file']['type']
+            );
+
             $this->bikeRepository->addBike($bike);
 
             return $this->render('bikes', ['messages' => $this->messages, 'bike' => $bike]);

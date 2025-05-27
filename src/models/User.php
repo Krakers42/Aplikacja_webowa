@@ -9,7 +9,7 @@ class User {
     private $surname;
     private $id_user;
 
-    public function __construct(string $email, string $password, string $name, string $surname, int $id_user) {
+    public function __construct(string $email, string $password, string $name, string $surname, string $id_user) {
         $this->id_user = $id_user;
         $this->email = $email;
         $this->password = $password;
@@ -17,12 +17,12 @@ class User {
         $this->name = $surname;
     }
 
-    public function getIdUser(): int
+    public function getIdUser(): string
     {
         return $this->id_user;
     }
 
-    public function setIdUser(int $id_user): void
+    public function setIdUser(string $id_user): void
     {
         $this->id_user = $id_user;
     }

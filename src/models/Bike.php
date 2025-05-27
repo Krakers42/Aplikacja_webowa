@@ -6,25 +6,36 @@ class Bike
     private $title;
     private $description;
     private $image;
-
     private $image_type;
+    private $userId;
+
+    public function __construct($userId, $title, $description, $image, $image_type)
+    {
+        $this->title = $title;
+        $this->description = $description;
+        $this->image = $image;
+        $this->image_type = $image_type;
+        $this->userId = $userId;
+    }
 
     public function getImageType(): string
     {
         return $this->image_type;
     }
 
-    public function setImageType(): string
+    public function setImageType(string $image_type)
     {
-        return $this->image_type;
+        $this->image_type = $image_type;
     }
 
-    public function __construct($title, $description, $image, $image_type)
+    public function getUserId(): ?string
     {
-        $this->title = $title;
-        $this->description = $description;
-        $this->image = $image;
-        $this->image_type = $image_type;
+        return $this->userId;
+    }
+
+    public function setUserId(string $userId)
+    {
+        $this->userId = $userId;
     }
 
     public function getTitle(): string

@@ -7,10 +7,11 @@ require_once __DIR__.'/../../Routing.php';
 
 class SecurityController extends AppController {
     public function login() {
+
         $userRepository = new UserRepository();
 
         if(!$this->isPost()) {
-            return $this->login('login');
+            return $this->render('login');
         }
 
         $email = $_POST["email"];
@@ -32,10 +33,13 @@ class SecurityController extends AppController {
         }
 
         $_SESSION['user'] = [
+            'id_user' => $user->getIdUser(),
             'email' => $user->getEmail(),
             'name' => $user->getName(),
             'surname' => $user->getSurname(),
         ];
+
+        $_SESSION['user_id'] = $user->getIdUser();
         header("Location: /dashboard");
         exit();
     }

@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 require_once 'AppController.php';
 require_once __DIR__.'/../repositories/BikeRepository.php';
 
@@ -23,9 +25,16 @@ class DefaultController extends AppController {
     }
 
     public function bikes() {
+
+        $userId = $_SESSION['user_id'] ?? null;
+        if(!$userId) {
+            $this->render('login', ['error' => 'Log in to see your bikes!']);
+            return;
+        }
+
         try {
             $bikeRepository = new BikeRepository();
-            $bike_cards = $bikeRepository->getBikes();
+            $bike_cards = $bikeRepository->getBikesByUser($userId);
 
             $this->render('bikes', ['bike_cards' => $bike_cards]);
         }
