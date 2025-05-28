@@ -58,7 +58,7 @@ class Bike
         $this->description = $description;
     }
 
-    public function getImage(): string
+    public function getImage(): string|false|null
     {
         return $this->image;
     }

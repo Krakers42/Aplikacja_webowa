@@ -14,20 +14,27 @@ class BikeRepository extends Repository {
         $stmt->bindParam(':id_user', $id_user, PDO::PARAM_INT);
         $stmt->execute();
 
+
         $bikesData = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $bikes = [];
 
         foreach ($bikesData as $bike) {
+            $image = $bike['photo'];
+            if (is_resource($image)) {
+                $image = stream_get_contents($image);
+            }
+
             $bikes[] = new Bike(
                 $bike['id_user'],
                 $bike['name'],
                 $bike['description'],
-                $bike['photo'],
+                $image,
                 $bike['image_type'],
             );
         }
+
         if (!$bikes) {
-            throw new BikeNotFoundException("Bike not found.");
+            return [];
         }
 
         return $bikes;
@@ -40,13 +47,13 @@ class BikeRepository extends Repository {
             VALUES (?, ?, ?, ?, ?)
         ');
 
-        $stmt->execute([
-            $bike->getUserId(),
-            $bike->getTitle(),
-            $bike->getDescription(),
-            $bike->getImageType(),
-            $bike->getImage()
-        ]);
+        $stmt->bindValue(1, $bike->getUserId(), PDO::PARAM_INT);
+        $stmt->bindValue(2, $bike->getTitle(), PDO::PARAM_STR);
+        $stmt->bindValue(3, $bike->getDescription(), PDO::PARAM_STR);
+        $stmt->bindValue(4, $bike->getImageType(), PDO::PARAM_STR);
+        $stmt->bindValue(5, $bike->getImage(), PDO::PARAM_LOB);
+
+        $stmt->execute();
 
     }
 }

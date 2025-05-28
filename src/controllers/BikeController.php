@@ -10,8 +10,7 @@ require_once __DIR__. '/../repositories/BikeRepository.php';
 class BikeController extends AppController
 {
     const MAX_FILE_SIZE = 1024*1024;
-    const SUPPORTED_FILE_TYPES = ['image/png', 'image/jpeg'];
-    const UPLOAD_DIRECTORY = '/../public/uploads/';
+    const SUPPORTED_FILE_TYPES = ['image/png', 'image/jpeg', 'image/jpg'];
     private $messages = [];
     private $bikeRepository;
 
@@ -30,11 +29,6 @@ class BikeController extends AppController
             && is_uploaded_file($_FILES['file']['tmp_name'])
             && $this->validate($_FILES['file'])
         ) {
-            move_uploaded_file(
-                $_FILES['file']['tmp_name'],
-                dirname(__DIR__).self::UPLOAD_DIRECTORY.$_FILES['file']['name']
-            );
-
             if(!isset($_SESSION['user'])) {
                 return $this->render('login', ['messages' => ['You must be logged in to complete this task.']]);
             }
@@ -51,7 +45,9 @@ class BikeController extends AppController
 
             $this->bikeRepository->addBike($bike);
 
-            return $this->render('bikes', ['messages' => $this->messages, 'bike' => $bike]);
+            $_SESSION['success_message'] = 'Bike has been added';
+            header('Location: /bikes');
+            exit();
         }
 
         $this->render('add_bike', ['messages' => $this->messages]);

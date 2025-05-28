@@ -36,8 +36,8 @@
                             <div class="bike-visual">
                                 <h3><?= htmlspecialchars($bike->getTitle()) ?></h3>
                                 <img
-                                        src="data:<?= htmlspecialchars($bike->getImageType()) ?>;base64,<?= base64_encode($bike->getImage()) ?>"
-                                        alt="<?= htmlspecialchars($bike->getName()) ?>"
+                                        src="data:<?= $bike->getImageType() ?>;base64,<?= base64_encode($bike->getImage()) ?>"
+                                        alt="<?= htmlspecialchars($bike->getTitle()) ?>"
                                 />
                             </div>
 
