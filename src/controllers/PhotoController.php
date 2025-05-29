@@ -13,6 +13,7 @@ class PhotoController extends AppController
     public function __construct()
     {
         parent::__construct();
+        session_start();
         $this->photoRepository = new PhotoRepository();
     }
 
@@ -20,50 +21,62 @@ class PhotoController extends AppController
     {
         header('Content-type: application/json');
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['photo'])) {
-            $file = $_FILES['photo'];
-            $imageType = $file['type'];
-            $imageData = file_get_contents($file['tmp_name']);
-
-            $userId = $_SESSION['user_id'] ?? null;
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['image'])) {
+            $userId    = $_SESSION['user_id'] ?? null;
             if (!$userId) {
                 http_response_code(401);
-                echo json_encode(['error' => 'User must be logged in']);
+                echo json_encode(['error' => 'Not logged in']);
                 return;
             }
 
-            $this->photoRepository->addPhoto($userId, $imageType, $imageData);
-            echo json_encode(['success' => true]);
+            $file      = $_FILES['image'];
+            $data      = file_get_contents($file['tmp_name']);
+            $type      = $file['type'];
+
+            try {
+                $this->photoRepository->addPhoto($userId, $type, $data);
+                $lastId = $this->photoRepository->getLastInsertedId();
+                echo json_encode(['success' => true, 'id' => $lastId]);
+            } catch (PDOException $e) {
+                http_response_code(500);
+                echo json_encode(['error' => 'DB error']);
+            }
             return;
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $userId = $_SESSION['user_id'] ?? null;
-
             if (!$userId) {
                 http_response_code(401);
-                echo json_encode(['error' => 'User must be logged in']);
+                echo json_encode(['error' => 'Not logged in']);
                 return;
             }
 
-            $photos = $this->photoRepository->getPhotosByUser($userId);
-            echo json_encode($photos);
+            $rows = $this->photoRepository->getPhotosByUser($userId);
+            $out = array_map(fn($r) => [
+                'id'         => $r['id_photo'],
+                'image_type' => $r['image_type'],
+                'image'      => base64_encode($r['image'])
+            ], $rows);
+
+            echo json_encode($out);
             return;
         }
 
         http_response_code(405);
-        echo json_encode(['error' => 'Invalid request method']);
+        echo json_encode(['error' => 'Method not allowed']);
     }
 
-    /*
-    public function delete_photo() {
-        if (!isset($_POST['id_photo'])) {
-            echo json_encode(['message' => 'No photo ID provided']);
+    public function delete_photo(): void
+    {
+        $userId = $_SESSION['user_id'] ?? null;
+        if (!$userId || !isset($_POST['id_photo'])) {
+            http_response_code(400);
+            echo json_encode(['error' => 'Bad request']);
             return;
         }
 
-        $this->photoRepository->deletePhoto((int)$_POST['id_photo']);
-        echo json_encode(['message' => 'Photo deleted']);
+        $this->photoRepository->deletePhoto((int)$_POST['id_photo'], $userId);
+        echo json_encode(['success' => true]);
     }
-    */
 }

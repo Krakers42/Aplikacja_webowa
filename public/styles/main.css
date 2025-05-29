@@ -101,7 +101,7 @@ body {
     box-shadow:
       2px 2px 5px rgb(0 0 0 / 40%), /* drop shadow */
       inset 1px 1px 3px rgb(0 0 0 / 40%); /* inner shadow */
-    width: 260px
+    width: 320px
  
 }
 
@@ -123,7 +123,7 @@ input::placeholder {
 }
 
 button {
-    width: 280px;
+    width: 320px;
     height: 55px;
     background: #83C5EE;
     border-radius: 10px;

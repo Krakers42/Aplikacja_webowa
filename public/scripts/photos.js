@@ -1,91 +1,63 @@
-const dropArea = document.getElementById('drop-area');
-const fileInput = document.getElementById('fileElem');
-const gallery = document.getElementById('gallery');
+document.addEventListener('DOMContentLoaded', ()=> {
+    const dropArea = document.getElementById('drop-area');
+    const fileInput = document.getElementById('fileElem');
+    const gallery = document.getElementById('gallery');
+    const deleteBtn  = document.getElementById('delete-photo');
 
 
-window.onload = () => {
-    fetch('controllers/PhotoController.php')
-        .then(res => res.json())
+    fetch('/photos/handleRequest')
+        .then(r => r.json())
         .then(photos => {
-            photos.forEach(photo => {
+            photos.forEach(p => {
                 const img = document.createElement('img');
-                img.src = `data:${photos.image_type};base64,${photos.image}`;
+                img.src       = `data:${p.image_type};base64,${p.image}`;
+                img.dataset.id= p.id;
+                img.addEventListener('click', ()=> img.classList.toggle('selected'));
                 gallery.appendChild(img);
             });
-        })
-        .catch(error => {
-            console.error('There was a problem with loading photos:', error);
         });
-};
 
-dropArea.addEventListener('click', () => fileInput.click());
+    dropArea.addEventListener('click', ()=> fileInput.click());
+    ['dragenter','dragover'].forEach(evt=>
+        dropArea.addEventListener(evt, e=> {e.preventDefault(); dropArea.classList.add('highlight');})
+    );
+    ['dragleave','drop'].forEach(evt=>
+        dropArea.addEventListener(evt, e=> {e.preventDefault(); dropArea.classList.remove('highlight');})
+    );
+    dropArea.addEventListener('drop', e=> handleFiles(e.dataTransfer.files));
+    fileInput.addEventListener('change', e=> handleFiles(e.target.files));
 
-['dragenter', 'dragover'].forEach(eventName => {
-    dropArea.addEventListener(eventName, (e) => {
-        e.preventDefault();
-        dropArea.classList.add('highlight');
-    });
-});
-
-['dragleave', 'drop'].forEach(eventName => {
-    dropArea.addEventListener(eventName, (e) => {
-        e.preventDefault();
-        dropArea.classList.remove('highlight');
-    });
-});
-
-dropArea.addEventListener('drop', (e) => {
-    const files = e.dataTransfer.files;
-    handleFiles(files);
-});
-
-fileInput.addEventListener('change', (e) => {
-    handleFiles(e.target.files);
-});
-
-function handleFiles(files) {
-    const formData = new FormData();
-    formData.append('photo', file);
-
-    fetch('controllers/PhotoController.php', {
-        method: 'POST',
-        body: formData
-    })
-        .then(res => res.json())
-        .then(data => {
-            if (data.success) {
-                displayImage(file);
-            } else {
-                console.error('Error with uploading:', data.error);
-            }
-        })
-        .catch(error => {
-            console.error('Upload failed:', error);
-        });
-}
-
-function displayImage(file) {
-    const reader = new FileReader();
-    reader.onload = () => {
-        const img = document.createElement('img');
-        img.src = reader.result;
-        gallery.appendChild(img);
-    };
-    reader.readAsDataURL(file);
-}
-
-function toggleFullscreen(img) {
-    if (img.classList.contains('fullscreen')) {
-        img.classList.remove('fullscreen');
-        document.body.style.overflow = '';
-    } else {
-        document.querySelectorAll('#gallery img').forEach(i => i.classList.remove('fullscreen'));
-        img.classList.add('fullscreen');
-        document.body.style.overflow = 'hidden';
+    function handleFiles(files){
+        if (!files.length) return;
+        const fd = new FormData();
+        fd.append('image', files[0]);
+        fetch('/photos/handleRequest', {method:'POST', body:fd, credentials:'include'})
+            .then(r=> r.json())
+            .then(res=>{
+                if(res.success) {
+                    const img = document.createElement('img');
+                    img.src = URL.createObjectURL(files[0]);
+                    img.dataset.id = res.id;   // jeśli zwrócimy id w JSON
+                    gallery.prepend(img);
+                } else {
+                    alert(res.error);
+                }
+            });
     }
-}
 
-document.getElementById('delete-photo').addEventListener('click', () => {
-    const selected = document.querySelector('.fullscreen');
-    if (selected) selected.remove();
+    deleteBtn.addEventListener('click', ()=>{
+        const sel = gallery.querySelector('img.selected');
+        if (!sel) return;
+        fetch('/photos/delete_photo', {
+            method:'POST',
+            headers:{'Content-Type':'application/x-www-form-urlencoded'},
+            body:`id_photo=${sel.dataset.id}`, credentials:'include'
+        })
+            .then(r=>r.json())
+            .then(res=>{
+                if(res.success) sel.remove();
+            });
+    });
 });
+
+
