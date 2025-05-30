@@ -24,9 +24,4 @@ Routing::get('account', 'DefaultController');
 Routing::post('login', 'SecurityController');
 Routing::post('add_bike', 'BikeController');
 
-Routing::get('photos/handleRequest', 'PhotoController');
-Routing::post('photos/handleRequest', 'PhotoController');
-Routing::post('photos/delete_photo', 'PhotoController');
-
-
 Routing::run($path);
