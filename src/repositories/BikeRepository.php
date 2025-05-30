@@ -56,4 +56,14 @@ class BikeRepository extends Repository {
         $stmt->execute();
 
     }
+
+    public function deleteBike(int $bikeId, int $userId): void {
+        $stmt = $this->database->connect()->prepare(
+            'DELETE FROM bike_cards WHERE id_bike = :id AND id_user = :user_id'
+        );
+        $stmt->bindParam(':id', $bikeId, PDO::PARAM_INT);
+        $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
+        $stmt->execute();
+    }
+
 }

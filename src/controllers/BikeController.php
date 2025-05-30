@@ -66,4 +66,15 @@ class BikeController extends AppController
 
         return true;
     }
+
+    public function delete_bike($id = null) {
+        if (!$id || !isset($_SESSION['user'])) {
+            header('Location: /bikes');
+            exit();
+        }
+
+        $this->bikeRepository->deleteBike((int)$id, $_SESSION['user']['id_user']);
+        header('Location: /bikes');
+    }
+
 }

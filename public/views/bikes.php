@@ -29,8 +29,8 @@
                     <?php if (isset($bike)): ?>
                         <div class="bike-card">
                             <div class="bike-actions">
-                                <button class="edit-bike">Edit</button>
-                                <button class="delete-bike">Delete</button>
+                                <button class="edit-bike" data-id="<?php echo $bike->getId(); ?>">Edit</button>
+                                <button class="delete-bike" data-id="<?php echo $bike->getId(); ?>">Delete</button>
                             </div>
 
                             <div class="bike-visual">
@@ -55,6 +55,7 @@
     </main>
     <button id="add-bike">Add Bike +</button>
     <script src="public/scripts/main.js"></script>
+    <script src="public/scripts/bikes.js"></script>
 </body>
 
 </html>
