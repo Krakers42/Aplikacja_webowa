@@ -5,10 +5,6 @@ require_once __DIR__ . '/../repositories/GearPartsRepository.php';
 class GearPartsController extends AppController {
     private GearPartsRepository $repository;
 
-    public function __construct(PDO $db) {
-        $this->repository = new GearPartsRepository($db);
-    }
-
     public function handleRequest() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $action = $_POST['action'] ?? '';
