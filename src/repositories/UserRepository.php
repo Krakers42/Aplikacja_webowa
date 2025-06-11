@@ -16,7 +16,7 @@ class UserRepository extends Repository {
 
         $email = $user->getEmail();
         $hashedPassword = password_hash($user->getPassword(), PASSWORD_DEFAULT);
-        $idUserDetails = $this->insertUserDetails($user->getName(), $user->getSurname());
+        $idUserDetails = $this->insertUserDetails($user->getName(), $user->getSurname(), $user->getRole());
 
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
         $stmt->bindParam(':password', $hashedPassword, PDO::PARAM_STR);
@@ -51,13 +51,14 @@ class UserRepository extends Repository {
         );
     }
 
-    private function insertUserDetails(string $name, string $surname): int {
+    private function insertUserDetails(string $name, string $surname, string $role): int {
         $stmt = $this->database->connect()->prepare(
-            "INSERT INTO users_details (name, surname) VALUES (:name, :surname)"
+            "INSERT INTO users_details (name, surname, role) VALUES (:name, :surname, :role)"
         );
 
         $stmt->bindParam(':name', $name, PDO::PARAM_STR);
         $stmt->bindParam(':surname', $surname, PDO::PARAM_STR);
+        $stmt->bindParam(':role', $role, PDO::PARAM_STR);
         $stmt->execute();
 
         return $this->database->connect()->lastInsertId();

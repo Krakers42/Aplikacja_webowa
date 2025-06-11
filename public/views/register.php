@@ -44,6 +44,14 @@
                     <input type="password" name="password" placeholder="password" required />
                 </div>
 
+                <div class="whole-input">
+                    <i class="fa-solid fa-user-shield"></i>
+                    <select name="role" required>
+                        <option value="" disabled selected>Choose role</option>
+                        <option value="user">User</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
 
                 <button type="submit"><i>CONTINUE</i></button>
 

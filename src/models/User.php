@@ -2,6 +2,8 @@
 
 namespace models;
 
+use Couchbase\Role;
+
 class User {
     private $email;
     private $password;
@@ -9,15 +11,26 @@ class User {
     private $surname;
     private $id_user;
 
-    public function __construct(string $email, string $password, string $name, string $surname, string $id_user = null) {
+    private $role;
+
+    public function __construct(string $email, string $password, string $name, string $surname, string $role, string $id_user = null) {
         $this->id_user = $id_user;
         $this->email = $email;
         $this->password = $password;
         $this->name = $name;
         $this->surname = $surname;
+        $this->role = $role;
     }
 
-    public function getIdUser(): string
+    public function getRole(): string{
+        return $this->role;
+    }
+
+    public function setRole(string $role): void{
+        $this->role = $role;
+    }
+
+    public function getIdUser(): ?string
     {
         return $this->id_user;
     }

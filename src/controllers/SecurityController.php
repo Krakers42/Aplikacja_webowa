@@ -55,8 +55,9 @@ class SecurityController extends AppController {
         $password = $_POST['password'];
         $name = $_POST['name'];
         $surname = $_POST['surname'];
+        $role = $_POST['role'];
 
-        $user = new User($email, $password, $name, $surname);
+        $user = new User($email, $password, $name, $surname, $role);
 
         $userRepository = new UserRepository();
         $userRepository->addUser($user);
