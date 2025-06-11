@@ -9,12 +9,12 @@ class User {
     private $surname;
     private $id_user;
 
-    public function __construct(string $email, string $password, string $name, string $surname, string $id_user) {
+    public function __construct(string $email, string $password, string $name, string $surname, string $id_user = null) {
         $this->id_user = $id_user;
         $this->email = $email;
         $this->password = $password;
-        $this->surname = $name;
-        $this->name = $surname;
+        $this->name = $name;
+        $this->surname = $surname;
     }
 
     public function getIdUser(): string

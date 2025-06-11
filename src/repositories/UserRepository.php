@@ -8,6 +8,23 @@ require_once __DIR__.'/../exceptions/UserNotFoundException.php';
 
 
 class UserRepository extends Repository {
+    public function addUser(User $user): void {
+        $stmt = $this->database->connect()->prepare(
+            "INSERT INTO users (email, password, id_user_details)
+         VALUES (:email, :password, :id_user_details)"
+        );
+
+        $email = $user->getEmail();
+        $hashedPassword = password_hash($user->getPassword(), PASSWORD_DEFAULT);
+        $idUserDetails = $this->insertUserDetails($user->getName(), $user->getSurname());
+
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->bindParam(':password', $hashedPassword, PDO::PARAM_STR);
+        $stmt->bindParam(':id_user_details', $idUserDetails, PDO::PARAM_INT);
+
+        $stmt->execute();
+    }
+
     public function getUser(string $email): ?User {
         $stmt = $this->database->connect()->prepare(
             "SELECT u.id_user, u.email, u.password, d.name, d.surname 
@@ -33,4 +50,17 @@ class UserRepository extends Repository {
             $user['id_user']
         );
     }
+
+    private function insertUserDetails(string $name, string $surname): int {
+        $stmt = $this->database->connect()->prepare(
+            "INSERT INTO users_details (name, surname) VALUES (:name, :surname)"
+        );
+
+        $stmt->bindParam(':name', $name, PDO::PARAM_STR);
+        $stmt->bindParam(':surname', $surname, PDO::PARAM_STR);
+        $stmt->execute();
+
+        return $this->database->connect()->lastInsertId();
+    }
+
 }

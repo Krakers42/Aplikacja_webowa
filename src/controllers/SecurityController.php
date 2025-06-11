@@ -1,5 +1,7 @@
 <?php
 
+use models\User;
+
 require_once 'AppController.php';
 require_once __DIR__.'/../models/User.php';
 require_once __DIR__.'/../repositories/UserRepository.php';
@@ -28,7 +30,7 @@ class SecurityController extends AppController {
             return $this->render('login', ['messages' => ['User with this email does not exist!']]);
         }
 
-        if ($user->getPassword() !== $password) {
+        if (!password_verify($password, $user->getPassword())) {
             return $this->render('login', ['messages' => ['Wrong password!']]);
         }
 
@@ -43,4 +45,24 @@ class SecurityController extends AppController {
         header("Location: /dashboard");
         exit();
     }
+
+    public function register() {
+        if (!$this->isPost()) {
+            return $this->render('register');
+        }
+
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+        $name = $_POST['name'];
+        $surname = $_POST['surname'];
+
+        $user = new User($email, $password, $name, $surname);
+
+        $userRepository = new UserRepository();
+        $userRepository->addUser($user);
+
+        header("Location: /login");
+        exit();
+    }
+
 }

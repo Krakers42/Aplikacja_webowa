@@ -22,26 +22,28 @@
         <div class="content flex-column-center-center">
             <h1>REGISTER</h1>
             <h2>Welcome!</h2>
-            <form class="register-form flex-column-center-center">
+
+            <form class="register-form flex-column-center-center" method="POST" action="/register">
                 <div class="whole-input">
                     <i class="fa-solid fa-person"></i>
-                    <input type="name" placeholder="name" />
+                    <input type="text" name="name" placeholder="name" required />
                 </div>
 
                 <div class="whole-input">
                     <i class="fa-solid fa-person"></i>
-                    <input type="surname" placeholder="surname" />
+                    <input type="text" name="surname" placeholder="surname" required />
                 </div>
 
                 <div class="whole-input">
                     <i class="icon fa-solid fa-envelope"></i>
-                    <input type="email" placeholder="email" />
+                    <input type="email" name="email" placeholder="email" required />
                 </div>
 
                 <div class="whole-input">
                     <i class="icon fa-solid fa-door-open"></i>
-                    <input type="password" placeholder="password" />
+                    <input type="password" name="password" placeholder="password" required />
                 </div>
+
 
                 <button type="submit"><i>CONTINUE</i></button>
 
