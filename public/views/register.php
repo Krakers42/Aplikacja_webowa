@@ -48,7 +48,7 @@
                 <button type="submit"><i>CONTINUE</i></button>
 
                 <div class="links">
-                    <a href="login.php">Login</a>
+                    <a href="/login">Login</a>
                 </div>
             </form>
         </div>

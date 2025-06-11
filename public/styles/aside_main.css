@@ -119,7 +119,7 @@ aside {
         text-align: center;
     }
 
-aside > button {
+button.logout-button {
     margin-top: auto;
     background: none;
     border: none;

@@ -44,8 +44,8 @@
                 <button type="submit"><i>CONTINUE</i></button>
 
                 <div class="links">
-                    <a href="forgot_password.php">Forgot password?</a>
-                    <a href="register.php">Register</a>
+                    <a href="/forgot_password">Forgot password?</a>
+                    <a href="/register">Register</a>
                 </div>
 
             </form>

@@ -29,5 +29,10 @@
         </ul>
     </nav>
 
-    <button onclick="window.location.href='login.html'">Logout</button>
+    <div class="logout-container">
+        <form action="/logout" method="POST">
+            <button type="submit" class="logout-button">Logout</button>
+        </form>
+    </div>
+
 </aside>
