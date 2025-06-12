@@ -27,7 +27,7 @@ class UserRepository extends Repository {
 
     public function getUser(string $email): ?User {
         $stmt = $this->database->connect()->prepare(
-            "SELECT u.id_user, u.email, u.password, d.name, d.surname 
+            "SELECT u.id_user, u.email, u.password, d.name, d.surname, d.role 
                 FROM users u 
                 JOIN users_details d ON 
                 u.id_user_details = d.id_user_details 
@@ -47,6 +47,7 @@ class UserRepository extends Repository {
             $user['password'],
             $user['name'],
             $user['surname'],
+            $user['role'],
             $user['id_user']
         );
     }
@@ -63,5 +64,16 @@ class UserRepository extends Repository {
 
         return $this->database->connect()->lastInsertId();
     }
+
+    public function getAllUsers(): array {
+        $stmt = $this->database->connect()->prepare(
+            "SELECT u.id_user, u.email, d.name, d.surname, d.role
+         FROM users u
+         JOIN users_details d ON u.id_user_details = d.id_user_details"
+        );
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 
 }

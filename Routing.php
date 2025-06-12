@@ -34,6 +34,10 @@ class Routing extends AppController {
         $id = $urlParts[2] ?? null;
 
         if (!method_exists($object, $actionMethod)) {
+            if (method_exists($object, $action)) {
+                $object->$action();
+                return;
+            }
             $default = new DefaultController();
             $default->error404();
             return;

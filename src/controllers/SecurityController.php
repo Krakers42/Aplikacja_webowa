@@ -39,12 +39,33 @@ class SecurityController extends AppController {
             'email' => $user->getEmail(),
             'name' => $user->getName(),
             'surname' => $user->getSurname(),
+            'role' => $user->getRole()
         ];
 
         $_SESSION['user_id'] = $user->getIdUser();
         header("Location: /dashboard");
         exit();
     }
+
+    public function getAllUsers(): array {
+        error_log('getAllUsers called');
+
+        if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
+            http_response_code(403);
+            echo json_encode(['error' => 'Access denied']);
+            exit();
+        }
+
+        $userRepository = new UserRepository();
+        $users = $userRepository->getAllUsers();
+
+        error_log(print_r($users, true));
+
+        header('Content-Type: application/json');
+        echo json_encode($users);
+        exit();
+    }
+
 
     public function register() {
         if (!$this->isPost()) {

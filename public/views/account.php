@@ -1,3 +1,13 @@
+<?php
+if (!isset($_SESSION['user'])) {
+    header("Location: /login");
+    exit();
+}
+
+$user = $_SESSION['user'];
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,30 +34,31 @@
     <main>
         <h1>ACCOUNT</h1>
         <div id="user-info">
-            <p><strong>Name:</strong> <span id="name">Geralt</span></p>
-            <p><strong>Surname:</strong> <span id="surname">Wiedzmin</span></p>
-            <p><strong>Username:</strong> <span id="username">user123</span></p>
-            <p><strong>Account created:</strong> <span id="created">2024-11-01</span></p>
+            <p><strong>Name:</strong> <span id="name"><?= htmlspecialchars($user['name']) ?></span></p>
+            <p><strong>Surname:</strong> <span id="surname"><?= htmlspecialchars($user['surname']) ?></span></p>
+            <p><strong>Email:</strong> <span id="username"><?= htmlspecialchars($user['email']) ?></span></p>
+            <p><strong>Role:</strong> <span id="role"><?= htmlspecialchars($user['role']) ?></span></p>
+            <p><strong>ID user:</strong> <span id="id_user"><?= htmlspecialchars($user['id_user']) ?></span></p>
         </div>
 
-        <div id="admin-section" class="hidden">
-            <h3>All Users</h3>
-            <table>
-                <thead>
+        <?php if ($user['role'] === 'admin'): ?>
+            <div id="admin-section">
+                <h3>All Users</h3>
+                <table>
+                    <thead>
                     <tr>
                         <th>Name</th>
                         <th>Surname</th>
                         <th>Username</th>
-                        <th>Created</th>
                         <th>Role</th>
-                        <th>Actions</th>
+                        <th>ID User</th>
                     </tr>
-                </thead>
-                <tbody id="users-table">
-                    
-                </tbody>
-            </table>
-        </div>
+                    </thead>
+                    <tbody id="users-table">
+                    </tbody>
+                </table>
+            </div>
+        <?php endif; ?>
     </main>
     <script src="public/scripts/main.js"></script>
     <script src="public/scripts/account.js"></script>
