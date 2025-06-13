@@ -28,9 +28,9 @@ Routing::post('logout', 'SecurityController');
 
 Routing::get('getAllUsers', 'SecurityController');
 
-Routing::get('photos/handleRequest', 'PhotoController');
-Routing::post('photos/handleRequest', 'PhotoController');
-Routing::post('photos/delete_photo', 'PhotoController');
+Routing::get('getPhoto', 'PhotoController');
+Routing::post('postPhoto', 'PhotoController');
+Routing::post('deletePhoto', 'PhotoController');
 
 Routing::get('bikeController/delete_bike', 'BikeController');
 

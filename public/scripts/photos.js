@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     const deleteBtn  = document.getElementById('delete-photo');
 
 
-    fetch('/photos/handleRequest')
+    fetch('getPhoto')
         .then(r => r.json())
         .then(photos => {
             photos.forEach(p => {
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
         if (!files.length) return;
         const fd = new FormData();
         fd.append('image', files[0]);
-        fetch('/photos/handleRequest', {method:'POST', body:fd, credentials:'include'})
+        fetch('postPhoto', {method:'POST', body:fd, credentials:'include'})
             .then(r=> r.json())
             .then(res=>{
                 if(res.success) {
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     deleteBtn.addEventListener('click', ()=>{
         const sel = gallery.querySelector('img.selected');
         if (!sel) return;
-        fetch('/photos/delete_photo', {
+        fetch('deletePhoto', {
             method:'POST',
             headers:{'Content-Type':'application/x-www-form-urlencoded'},
             body:`id_photo=${sel.dataset.id}`, credentials:'include'

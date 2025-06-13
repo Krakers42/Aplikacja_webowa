@@ -16,21 +16,21 @@ class PhotoController extends AppController
         $this->photoRepository = new PhotoRepository();
     }
 
-    public function handleRequest(): void
+    public function postPhoto(): void
     {
         header('Content-type: application/json');
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['image'])) {
-            $userId    = $_SESSION['user_id'] ?? null;
+            $userId = $_SESSION['user_id'] ?? null;
             if (!$userId) {
                 http_response_code(401);
                 echo json_encode(['error' => 'Not logged in']);
                 return;
             }
 
-            $file      = $_FILES['image'];
-            $data      = file_get_contents($file['tmp_name']);
-            $type      = $file['type'];
+            $file = $_FILES['image'];
+            $data = file_get_contents($file['tmp_name']);
+            $type = $file['type'];
 
             try {
                 $this->photoRepository->addPhoto($userId, $type, $data);
@@ -38,11 +38,14 @@ class PhotoController extends AppController
                 echo json_encode(['success' => true, 'id' => $lastId]);
             } catch (PDOException $e) {
                 http_response_code(500);
+                error_log("DB error: " . $e->getMessage());
                 echo json_encode(['error' => 'DB error']);
             }
             return;
         }
+    }
 
+    public function getPhoto(): void{
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $userId = $_SESSION['user_id'] ?? null;
             if (!$userId) {
@@ -55,7 +58,7 @@ class PhotoController extends AppController
             $out = array_map(fn($r) => [
                 'id'         => $r['id_photo'],
                 'image_type' => $r['image_type'],
-                'image'      => base64_encode($r['image'])
+                'image'      => base64_encode(stream_get_contents($r['image']))
             ], $rows);
 
             echo json_encode($out);
@@ -66,7 +69,7 @@ class PhotoController extends AppController
         echo json_encode(['error' => 'Method not allowed']);
     }
 
-    public function delete_photo(): void
+    public function deletePhoto(): void
     {
         $userId = $_SESSION['user_id'] ?? null;
         if (!$userId || !isset($_POST['id_photo'])) {
