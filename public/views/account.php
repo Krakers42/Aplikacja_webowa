@@ -41,6 +41,10 @@ $user = $_SESSION['user'];
             <p><strong>ID user:</strong> <span id="id_user"><?= htmlspecialchars($user['id_user']) ?></span></p>
         </div>
 
+        <?php if ($user['role'] !== 'admin'): ?>
+            <button class="delete-btn" data-id="<?= htmlspecialchars($user['id_user']) ?>">Delete my account</button>
+        <?php endif; ?>
+
         <?php if ($user['role'] === 'admin'): ?>
             <div id="admin-section">
                 <h3>All Users</h3>
@@ -52,6 +56,7 @@ $user = $_SESSION['user'];
                         <th>Username</th>
                         <th>Role</th>
                         <th>ID User</th>
+                        <th>Actions</th>
                     </tr>
                     </thead>
                     <tbody id="users-table">

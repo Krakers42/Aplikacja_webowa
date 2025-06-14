@@ -66,7 +66,6 @@ class SecurityController extends AppController {
         exit();
     }
 
-
     public function register() {
         if (!$this->isPost()) {
             return $this->render('register');
@@ -87,12 +86,45 @@ class SecurityController extends AppController {
         exit();
     }
 
+    public function deleteUser() {
+        if (!isset($_SESSION['user'])) {
+            http_response_code(401);
+            echo json_encode(['error' => 'Unauthorized']);
+            exit();
+        }
+
+        $currentUser = $_SESSION['user'];
+        $idToDelete = $_POST['id_user'] ?? null;
+
+        if (!$idToDelete) {
+            http_response_code(400);
+            echo json_encode(['error' => 'Missing user ID']);
+            exit();
+        }
+
+        if ($currentUser['role'] !== 'admin' && $currentUser['id_user'] != $idToDelete) {
+            http_response_code(403);
+            echo json_encode(['error' => 'Forbidden']);
+            exit();
+        }
+
+        $userRepository = new UserRepository();
+        $userRepository->deleteUser((int)$idToDelete);
+
+        if ($currentUser['id_user'] == $idToDelete) {
+            session_destroy();
+            echo json_encode(['redirect' => '/login']);
+            exit();
+        }
+
+        echo json_encode(['success' => true]);
+        exit();
+    }
+
     public function logout()
     {
         session_destroy();
         header("Location: /login");
         exit();
     }
-
-
 }

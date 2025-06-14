@@ -44,4 +44,6 @@ Routing::post('trips', 'TripsController');
 
 Routing::get('dashboard', 'DashboardController');
 
+Routing::post('deleteUser', 'SecurityController');
+
 Routing::run($path);

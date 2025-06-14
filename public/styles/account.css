@@ -7,6 +7,19 @@ body {
     background: rgb(184 225 250 / 50%);
 }
 
+button.delete-btn{
+    padding: 10px 18px;
+    border-radius: 10px;
+    border: 2px solid black;
+    background: #83C5EE;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.4);
+    transition: transform 0.2s ease-in-out;
+    margin: 5px;
+}
+
 #user-info {
     background-color: white;
     border-radius: 12px;
