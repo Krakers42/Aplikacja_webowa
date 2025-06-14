@@ -23,7 +23,6 @@ Routing::get('account', 'DefaultController');
 
 Routing::post('login', 'SecurityController');
 Routing::post('register', 'SecurityController');
-Routing::post('add_bike', 'BikeController');
 Routing::post('logout', 'SecurityController');
 
 Routing::get('getAllUsers', 'SecurityController');
@@ -32,6 +31,9 @@ Routing::get('getPhoto', 'PhotoController');
 Routing::post('postPhoto', 'PhotoController');
 Routing::post('deletePhoto', 'PhotoController');
 
-Routing::get('bikeController/delete_bike', 'BikeController');
+Routing::post('add_bike', 'BikeController');
+Routing::get('get_bikes', 'BikeController');
+Routing::post('delete_bike', 'BikeController');
+Routing::post('edit_bike', 'BikeController');
 
 Routing::run($path);

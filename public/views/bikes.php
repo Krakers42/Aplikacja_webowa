@@ -37,8 +37,8 @@ if (!isset($_SESSION['user'])) {
                     <?php if (isset($bike)): ?>
                         <div class="bike-card">
                             <div class="bike-actions">
-                                <button class="edit-bike" data-id="<?php echo $bike->getId(); ?>">Edit</button>
-                                <button class="delete-bike" data-id="<?php echo $bike->getId(); ?>">Delete</button>
+                                <!--<button class="edit-bike" data-id="<?php //echo $bike->getId(); ?>">Edit</button>-->
+                                <!--<button class="delete-bike" data-id="<?php //echo $bike->getId(); ?>">Delete</button>-->
                             </div>
 
                             <div class="bike-visual">
@@ -63,7 +63,7 @@ if (!isset($_SESSION['user'])) {
     </main>
     <button id="add-bike">Add Bike +</button>
     <script src="public/scripts/main.js"></script>
-    <script src="public/scripts/bikes.js"></script>
+    <!--,<script src="public/scripts/bikes.js"></script>-->
 </body>
 
 </html>

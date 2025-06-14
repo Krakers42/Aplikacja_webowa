@@ -53,6 +53,18 @@ class BikeController extends AppController
         $this->render('add_bike', ['messages' => $this->messages]);
     }
 
+    public function get_bikes(){
+        if (!isset($_SESSION['user'])) {
+            header("Location: /login");
+            exit();
+        }
+
+        $userId = $_SESSION['user']['id_user'];
+        $bikes = $this->bikeRepository->getBikesByUser($userId);
+
+        $this->render('bikes', ['bike_cards' => $bikes]);
+    }
+
     private function validate(array $file):bool {
         if($file['size'] > self::MAX_FILE_SIZE) {
             $this->messages[] = 'File is too large to upload.';
