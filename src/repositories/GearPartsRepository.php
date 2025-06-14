@@ -34,7 +34,8 @@ class GearPartsRepository extends Repository {
             ':purchase_date' => $data['purchase_date'],
             ':name' => $data['name'],
             ':value' => $data['value'],
-            ':comment' => $data['comment'] ?? ''
+            ':comment' => $data['comment'] ?? '',
+            'id_gear_part' => $id_gear_part
         ]);
     }
 

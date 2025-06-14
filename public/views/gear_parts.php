@@ -31,7 +31,7 @@ if (!isset($_SESSION['user'])) {
     <main>
         <h1>GEAR & PARTS</h1>
 
-        <form method="POST" action="gear_parts" style="margin-bottom:20px;">
+        <form method="POST" action="gear_parts" class="gear-part-form">
             <input type="hidden" name="action" value="add" />
             <label>
                 Purchase date:
@@ -75,16 +75,16 @@ if (!isset($_SESSION['user'])) {
                     <td>
                         <form method="POST" action="gear_parts" style="display:inline;">
                             <input type="hidden" name="action" value="delete" />
-                            <input type="hidden" name="id" value="<?= $part['id'] ?>" />
+                            <input type="hidden" name="id" value="<?= $part['id_gear_part'] ?>" />
                             <button type="submit" onclick="return confirm('Delete part?')">Delete</button>
                         </form>
-                        <button onclick="editPart(<?= $part['id'] ?>,
-                                '<?= addslashes(htmlspecialchars($part['purchase_date'])) ?>',
-                                '<?= addslashes(htmlspecialchars($part['name'])) ?>,
-                                '<?= addslashes(htmlspecialchars($part['value'])) ?>,
-                                '<?= addslashes(htmlspecialchars($part['comment'])) ?>
-                                ')">Edit
-                        </button>
+                        <button onclick="editPart(
+                            <?= $part['id_gear_part'] ?>,
+                            '<?= addslashes(htmlspecialchars($part['purchase_date'])) ?>',
+                            '<?= addslashes(htmlspecialchars($part['name'])) ?>',
+                            '<?= addslashes(htmlspecialchars($part['value'])) ?>',
+                            '<?= addslashes(htmlspecialchars($part['comment'])) ?>')"
+                        >Edit</button>
                     </td>
                 </tr>
             <?php endforeach; ?>
@@ -118,7 +118,6 @@ if (!isset($_SESSION['user'])) {
         </div>
 
     </main>
-    <button id="add-gear-parts">Add gear & parts +</button>
     <script src="public/scripts/main.js"></script>
     <script src="public/scripts/gear_parts.js"></script>
 </body>
