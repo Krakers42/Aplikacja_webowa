@@ -50,4 +50,46 @@ class TripsRepository extends Repository {
             WHERE id_trip = :id_trip");
         return $stmt->execute([':id_trip' => $id_trip]);
     }
+
+    public function getLongestDistance(): int {
+        $stmt = $this->database->connect()->prepare("
+            SELECT MAX(distance) as max_distance 
+            FROM trips 
+            WHERE id_user = :id_user
+        ");
+        $stmt->execute(['id_user' => $_SESSION['user']['id_user']]);
+        return (int) $stmt->fetch(PDO::FETCH_ASSOC)['max_distance'] ?? 0;
+    }
+
+    public function getTripCount(): int {
+        $stmt = $this->database->connect()->prepare("
+            SELECT COUNT(id_trip) as trip_count 
+            FROM trips 
+            WHERE id_user = :id_user
+        ");
+        $stmt->execute(['id_user' => $_SESSION['user']['id_user']]);
+        return (int) $stmt->fetch(PDO::FETCH_ASSOC)['trip_count'] ?? 0;
+    }
+
+    public function getTotalDistance(): int
+    {
+        $stmt = $this->database->connect()->prepare("
+            SELECT SUM(distance) as total_distance 
+            FROM trips 
+            WHERE id_user = :id_user
+        ");
+        $stmt->execute(['id_user' => $_SESSION['user']['id_user']]);
+        return (int) $stmt->fetch(PDO::FETCH_ASSOC)['total_distance'] ?? 0;
+    }
+
+    public function getMaxElevation(): int
+    {
+        $stmt = $this->database->connect()->prepare("
+            SELECT MAX(elevation) as max_elevation 
+            FROM trips 
+            WHERE id_user = :id_user
+        ");
+        $stmt->execute(['id_user' => $_SESSION['user']['id_user']]);
+        return (int) $stmt->fetch(PDO::FETCH_ASSOC)['max_elevation'] ?? 0;
+    }
 }

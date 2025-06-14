@@ -6,6 +6,7 @@ require_once 'src/controllers/BikeController.php';
 require_once 'src/controllers/PhotoController.php';
 require_once 'src/controllers/GearPartsController.php';
 require_once 'src/controllers/TripsController.php';
+require_once 'src/controllers/DashboardController.php';
 
 class Routing extends AppController {
     public static $routes;

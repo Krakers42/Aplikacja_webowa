@@ -125,8 +125,11 @@ if (!isset($_SESSION['user'])) {
                     Description:
                     <input type="text" name="description" id="editDescription"/>
                 </label><br/><br/>
-                <button type="submit" class="save-changes-button">Save changes</button>
-                <button type="button" onclick="document.getElementById('editForm').style.display='none'">Cancel</button>
+                <div class="button-group">
+                    <button type="submit" class="save-changes-button">Save changes</button>
+                    <button type="button" onclick="document.getElementById('editForm').style.display='none'">Cancel</button>
+                </div>
+
             </form>
         </div>
 

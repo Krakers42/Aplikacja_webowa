@@ -40,12 +40,11 @@ form input[type="date"] {
     width: 200px;
 }
 
-button {
-    outline: none;
-}
-
-button:focus {
-    outline: none;
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    margin-top: 1em;
 }
 
 button.add-part-button, button.save-changes-button,

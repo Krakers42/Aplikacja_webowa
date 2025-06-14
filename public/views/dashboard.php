@@ -34,31 +34,30 @@ if (!isset($_SESSION['user'])) {
         <section>
             <div>
                 <h3>Longest ride:</h3>
-
+                <p><?= $longestRide ?> km</p>
             </div>
 
             <div>
                 <h3>Trips:</h3>
-
+                <p><?= $tripCount ?></p>
             </div>
 
             <div>
                 <h3>Distance:</h3>
-
+                <p><?= $totalDistance ?> km</p>
             </div>
 
             <div>
                 <h3>Photos:</h3>
-
+                <p><?= $photoCount ?></p>
             </div>
 
             <div>
-                <h3>Max speed:</h3>
-
+                <h3>Biggest elevation:</h3>
+                <p><?= $maxElevation ?> m</p>
             </div>
-
-
         </section>
+
     </main>
     <script src="public/scripts/main.js"></script>
     

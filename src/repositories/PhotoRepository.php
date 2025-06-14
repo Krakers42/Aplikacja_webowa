@@ -34,4 +34,14 @@ class PhotoRepository extends Repository
         return $this->database->connect()->lastInsertId();
     }
 
+    public function getPhotoCount(): int {
+        $stmt = $this->database->connect()->prepare("
+            SELECT COUNT(id_photo) as photo_count 
+            FROM photos 
+            WHERE id_user = :id_user
+        ");
+        $stmt->execute(['id_user' => $_SESSION['user']['id_user']]);
+        return (int) $stmt->fetch(PDO::FETCH_ASSOC)['photo_count'] ?? 0;
+    }
+
 }

@@ -42,4 +42,6 @@ Routing::post('gear_parts', 'GearPartsController');
 Routing::get('trips', 'TripsController');
 Routing::post('trips', 'TripsController');
 
+Routing::get('dashboard', 'DashboardController');
+
 Routing::run($path);
