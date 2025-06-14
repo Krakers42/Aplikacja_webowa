@@ -29,7 +29,10 @@ class GearPartsRepository extends Repository {
     }
 
     public function updateGearPart(int $id_gear_part, array $data): bool {
-        $stmt = $this->database->connect()->prepare("UPDATE gear_parts SET purchase_date = :purchase_date, name = :name, value = :value, comment = :comment WHERE id_gear_part = :id_gear_part");
+        $stmt = $this->database->connect()->prepare("
+            UPDATE gear_parts 
+            SET purchase_date = :purchase_date, name = :name, value = :value, comment = :comment 
+            WHERE id_gear_part = :id_gear_part");
         return $stmt->execute([
             ':purchase_date' => $data['purchase_date'],
             ':name' => $data['name'],
@@ -40,7 +43,9 @@ class GearPartsRepository extends Repository {
     }
 
     public function deleteGearPart(int $id_gear_part): bool {
-        $stmt = $this->database->connect()->prepare("DELETE FROM gear_parts WHERE id_gear_part = :id_gear_part");
+        $stmt = $this->database->connect()->prepare("
+            DELETE FROM gear_parts 
+            WHERE id_gear_part = :id_gear_part");
         return $stmt->execute([':id_gear_part' => $id_gear_part]);
     }
 }

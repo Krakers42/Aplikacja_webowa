@@ -49,7 +49,7 @@ if (!isset($_SESSION['user'])) {
                 Comment:
                 <input type="text" name="comment" />
             </label>
-            <button type="submit">Add part</button>
+            <button type="submit" class="add-part-button">Add part</button>
         </form>
 
 
@@ -112,7 +112,7 @@ if (!isset($_SESSION['user'])) {
                     Comment:
                     <input type="text" name="comment" id="editComment"/>
                 </label><br/><br/>
-                <button type="submit">Save changes</button>
+                <button type="submit" class="save-changes-button">Save changes</button>
                 <button type="button" onclick="document.getElementById('editForm').style.display='none'">Cancel</button>
             </form>
         </div>

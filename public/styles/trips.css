@@ -7,14 +7,113 @@
     background: rgb(184 225 250 / 50%);
 }
 
-#add-trip {
-    position: fixed;
-    top: 30px;
-    right: 30px;
-    background-color: rgb(6 123 193 );
-    border: none;
-    border-radius: 20px;
-    padding: 10px 20px;
+.trips-form {
+    background: white;
+    max-width: 1200px;
+    padding: 1em 2em;
+    border-radius: 12px;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+
+form label {
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+    color: #053e6f;
+}
+
+form input[type="text"],
+form input[type="time"],
+form input[type="number"],
+form input[type="date"] {
+    padding: 0.5em;
+    border-radius: 8px;
+    border: 2px solid #053e6f;
+    background: #f8f8f8;
+    box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.1);
+    width: 200px;
+}
+
+button {
+    outline: none;
+}
+
+button:focus {
+    outline: none;
+}
+
+button.add-trip-button, button.save-changes-button,
+form button[type="button"],
+table button {
+    padding: 10px 18px;
+    border-radius: 10px;
+    border: 2px solid black;
+    background: #83C5EE;
+    color: white;
+    font-weight: bold;
     cursor: pointer;
-    z-index: 9999;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.4);
+    transition: transform 0.2s ease-in-out;
+    margin: 5px;
+}
+
+form button:hover,
+table button:hover {
+    transform: scale(1.05);
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+    background: white;
+    border-collapse: collapse;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+table th, table td {
+    padding: 10px;
+    text-align: center;
+}
+
+#editForm {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+    padding: 1.5em;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#editForm h3 {
+    margin-bottom: 1em;
+    color: #053e6f;
+    text-align: center;
+}
+
+#editForm label {
+    font-weight: bold;
+    color: #053e6f;
+    margin-bottom: 0.5em;
+    display: block;
+}
+
+#editForm input[type="text"],
+#editForm input[type="number"],
+#editForm input[type="date"] {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.5em;
+    margin-bottom: 1em;
+    border: 2px solid #053e6f;
+    border-radius: 8px;
+    background: #f8f8f8;
+    box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.1);
 }

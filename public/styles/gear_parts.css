@@ -48,7 +48,7 @@ button:focus {
     outline: none;
 }
 
-form button[type="submit"],
+button.add-part-button, button.save-changes-button,
 form button[type="button"],
 table button {
     padding: 10px 18px;

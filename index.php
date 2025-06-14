@@ -39,4 +39,7 @@ Routing::post('edit_bike', 'BikeController');
 Routing::get('gear_parts', 'GearPartsController');
 Routing::post('gear_parts', 'GearPartsController');
 
+Routing::get('trips', 'TripsController');
+Routing::post('trips', 'TripsController');
+
 Routing::run($path);
