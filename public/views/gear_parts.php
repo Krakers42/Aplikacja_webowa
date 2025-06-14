@@ -31,7 +31,7 @@ if (!isset($_SESSION['user'])) {
     <main>
         <h1>GEAR & PARTS</h1>
 
-        <form method="POST" action="/gear_parts" style="margin-bottom:20px;">
+        <form method="POST" action="gear_parts" style="margin-bottom:20px;">
             <input type="hidden" name="action" value="add" />
             <label>
                 Purchase date:
@@ -73,7 +73,7 @@ if (!isset($_SESSION['user'])) {
                     <td><?= htmlspecialchars($part['value']) ?></td>
                     <td><?= htmlspecialchars($part['comment']) ?></td>
                     <td>
-                        <form method="POST" action="/gear_parts" style="display:inline;">
+                        <form method="POST" action="gear_parts" style="display:inline;">
                             <input type="hidden" name="action" value="delete" />
                             <input type="hidden" name="id" value="<?= $part['id'] ?>" />
                             <button type="submit" onclick="return confirm('Delete part?')">Delete</button>

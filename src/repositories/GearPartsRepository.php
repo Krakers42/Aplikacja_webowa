@@ -5,15 +5,22 @@ require_once 'Repository.php';
 class GearPartsRepository extends Repository {
 
     public function getAllGearParts(): array {
-        $stmt = $this->database->connect()->prepare("SELECT id_gear_part, purchase_date, name, value, comment FROM gear_parts ORDER BY id_gear_part WHERE id_user = :id_user");
+        $stmt = $this->database->connect()->prepare("
+            SELECT id_gear_part, purchase_date, name, value, comment 
+            FROM gear_parts 
+            WHERE id_user = :id_user 
+            ORDER BY id_gear_part 
+        ");
+        $stmt->execute([':id_user' => $_SESSION['user']['id_user']]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function addGearPart(array $data): bool {
-        $stmt = $this->database->connect()->prepare("INSERT INTO gear_parts (id_gear_part, id_user, purchase_date, name, value, comment) VALUES (:id_gear_part, :id_user, :purchase_date, :name, :value, :comment)");
+        $stmt = $this->database->connect()->prepare("
+            INSERT INTO gear_parts (id_user, purchase_date, name, value, comment) 
+            VALUES (:id_user, :purchase_date, :name, :value, :comment)");
         return $stmt->execute([
-            ':id_gear_part' => $data['id_gear_part'],
-            ':id_user' => $data['id_user'],
+            ':id_user' => $_SESSION['user']['id_user'],
             ':purchase_date' => $data['purchase_date'],
             ':name' => $data['name'],
             ':value' => $data['value'],

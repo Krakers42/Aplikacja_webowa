@@ -3,9 +3,14 @@
 require_once __DIR__ . '/../repositories/GearPartsRepository.php';
 
 class GearPartsController extends AppController {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->repository = new GearPartsRepository();
+    }
     private GearPartsRepository $repository;
 
-    public function handleRequest() {
+    public function gear_parts() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $action = $_POST['action'] ?? '';
             switch ($action) {
@@ -35,7 +40,7 @@ class GearPartsController extends AppController {
 
     private function showList() {
         $gearParts = $this->repository->getAllGearParts();
-        require 'views/gear_parts.php';
+        require_once __DIR__ . '/../../public/views/gear_parts.php';
     }
 
     private function addGearPart(array $data) {
