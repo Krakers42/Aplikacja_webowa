@@ -23,6 +23,15 @@
             <h1>REGISTER</h1>
             <h2>Welcome!</h2>
 
+            <div class="messages">
+                <?php if (isset($messages)) {
+                    foreach ($messages as $message) {
+                        echo $message;
+                    }
+                }
+                ?>
+            </div>
+
             <form class="register-form flex-column-center-center" method="POST" action="/register">
                 <div class="whole-input">
                     <i class="fa-solid fa-person"></i>
@@ -42,6 +51,11 @@
                 <div class="whole-input">
                     <i class="icon fa-solid fa-door-open"></i>
                     <input type="password" name="password" placeholder="password" required />
+                </div>
+
+                <div class="whole-input">
+                    <i class="icon fa-solid fa-door-open"></i>
+                    <input type="password" name="confirm_password" placeholder="confirm password" required />
                 </div>
 
                 <div class="whole-input">
