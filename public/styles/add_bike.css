@@ -7,7 +7,6 @@ body {
     background: rgb(184 225 250 / 50%);
 }
 
-
 .add-bike {
     display: flex;
     flex-direction: column;

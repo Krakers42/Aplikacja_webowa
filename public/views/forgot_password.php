@@ -24,19 +24,19 @@
             <h1>RESET PASSWORD</h1>
             <h2>Forgotten password? No worries!</h2>
             
-            <form class="reset-password-form flex-column-center-center">
-                <h3>Enter password:</h3>
+            <form class="reset-password-form flex-column-center-center" method="POST" action="reset_password_handler.php">
+                <h3>Enter new password:</h3>
     
                 <div class="whole-input">
                     <i class="icon fa-solid fa-door-open"></i>
-                    <input type="password" id="password1" placeholder="password" required/>
+                    <input type="password" id="password1" name="password1" placeholder="password" required/>
                 </div>
     
-                <h3>Enter password again:</h3>
+                <h3>Enter new password again:</h3>
     
                 <div class="whole-input">
                     <i class="icon fa-solid fa-door-open"></i>
-                    <input type="password" id="password2" placeholder="password" required/>
+                    <input type="password" id="password2" name="password2" placeholder="password" required/>
                 </div>
     
                 <button type="submit"><i>CONTINUE</i></button>

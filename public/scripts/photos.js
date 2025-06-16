@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', ()=> {
     const gallery = document.getElementById('gallery');
     const deleteBtn  = document.getElementById('delete-photo');
 
-
     fetch('getPhoto')
         .then(r => r.json())
         .then(photos => {
@@ -38,11 +37,17 @@ document.addEventListener('DOMContentLoaded', ()=> {
                     const img = document.createElement('img');
                     img.src = URL.createObjectURL(files[0]);
                     img.dataset.id = res.id;
+
+                    img.addEventListener('click', () => {
+                        img.classList.toggle('selected');
+                    });
+
                     gallery.prepend(img);
                 } else {
                     alert(res.error);
                 }
             });
+
     }
 
     deleteBtn.addEventListener('click', ()=>{

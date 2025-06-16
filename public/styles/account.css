@@ -17,7 +17,13 @@ button.delete-btn{
     cursor: pointer;
     box-shadow: 2px 2px 5px rgba(0,0,0,0.4);
     transition: transform 0.2s ease-in-out;
-    margin: 5px;
+    margin-top: 10px;
+}
+
+.delete-btn-wrapper{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
 }
 
 #user-info {

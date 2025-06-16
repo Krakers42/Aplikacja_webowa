@@ -2,7 +2,6 @@
 
 namespace models;
 
-use Couchbase\Role;
 
 class User {
     private $email;

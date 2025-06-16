@@ -42,7 +42,9 @@ $user = $_SESSION['user'];
         </div>
 
         <?php if ($user['role'] !== 'admin'): ?>
-            <button class="delete-btn" data-id="<?= htmlspecialchars($user['id_user']) ?>">Delete my account</button>
+            <div class="delete-btn-wrapper">
+                <button class="delete-btn" data-id="<?= htmlspecialchars($user['id_user']) ?>">Delete my account</button>
+            </div>
         <?php endif; ?>
 
         <?php if ($user['role'] === 'admin'): ?>

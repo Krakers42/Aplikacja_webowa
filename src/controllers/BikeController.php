@@ -20,7 +20,6 @@ class BikeController extends AppController
         $this->bikeRepository = new BikeRepository();
     }
 
-
     public function add_bike() {
         if (
             $this->isPost()

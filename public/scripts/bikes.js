@@ -1,4 +1,3 @@
-
 document.querySelectorAll('.delete-bike').forEach(button => {
     button.addEventListener('click', () => {
         const bikeId = button.dataset.id;
