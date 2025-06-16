@@ -3,9 +3,19 @@
 class AppController {
     private $request;
     public function __construct() {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
         $this->request = $_SERVER['REQUEST_METHOD'];
     }
 
+    protected function requireLogin(){
+        if (!isset($_SESSION['user'])) {
+            header('Location: /login');
+            exit();
+        }
+    }
     protected function isGet():bool {
         return $this->request === 'GET';
     }

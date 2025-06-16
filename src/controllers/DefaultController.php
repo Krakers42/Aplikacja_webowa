@@ -21,11 +21,12 @@ class DefaultController extends AppController {
     }
 
     public function dashboard() {
+        $this->requireLogin();
         $this->render('dashboard');
     }
 
     public function bikes() {
-
+        $this->requireLogin();
         $userId = $_SESSION['user_id'] ?? null;
         if(!$userId) {
             $this->render('login', ['error' => 'Log in to see your bikes!']);
@@ -44,22 +45,27 @@ class DefaultController extends AppController {
     }
 
     public function gear_parts() {
+        $this->requireLogin();
         $this->render('gear_parts');
     }
 
     public function photos() {
+        $this->requireLogin();
         $this->render('photos');
     }
 
     public function trips() {
+        $this->requireLogin();
         $this->render('trips');
     }
 
     public function account() {
+        $this->requireLogin();
         $this->render('account');
     }
 
     public function add_bike() {
+        $this->requireLogin();
         $this->render('add_bike');
     }
 

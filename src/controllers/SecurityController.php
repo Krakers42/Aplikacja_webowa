@@ -9,6 +9,8 @@ require_once __DIR__.'/../../Routing.php';
 
 class SecurityController extends AppController {
     public function login() {
+        if (session_status() === PHP_SESSION_NONE) session_start();
+
         $userRepository = new UserRepository();
 
         if(!$this->isPost()) {
