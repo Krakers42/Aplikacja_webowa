@@ -13,7 +13,6 @@ body {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    padding: 40px 20px;
 }
 
 .add-bike form {
@@ -35,7 +34,7 @@ body {
 .add-bike form input[type="text"],
 .add-bike form textarea,
 .add-bike form input[type="file"] {
-    width: 100%;
+    width: 95%;
     padding: 12px 15px;
     font-size: 16px;
     border: 1px solid #ccc;

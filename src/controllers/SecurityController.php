@@ -9,13 +9,41 @@ require_once __DIR__.'/../../Routing.php';
 require_once __DIR__.'/../exceptions/PasswordsDontMatchException.php';
 
 class SecurityController extends AppController {
+
+    private function incrementLoginAttempts(int &$attempts): void {
+        $attempts++;
+    }
+
     public function login() {
         if (session_status() === PHP_SESSION_NONE) session_start();
 
         $userRepository = new UserRepository();
 
+        $maxAttempts = 3;
+        $banDuration = 60;
+
         if(!$this->isPost()) {
             return $this->render('login');
+        }
+
+        if (!isset($_SESSION['login_attempts'])) {
+        $_SESSION['login_attempts'] = 0;
+        }
+
+        if (!isset($_SESSION['last_failed_login'])) {
+            $_SESSION['last_failed_login'] = time();
+        }
+
+        if ($_SESSION['login_attempts'] >= $maxAttempts) {
+            $elapsed = time() - $_SESSION['last_failed_login'];
+
+            if ($elapsed < $banDuration) {
+                $remaining = ceil(($banDuration - $elapsed) / 60);
+                return $this->render('login', ['messages' => ["Too many attempts. Try again in $remaining minutes."]]);
+            } else {
+                $_SESSION['login_attempts'] = 0;
+                $_SESSION['last_failed_login'] = time();
+            }
         }
 
         $email = $_POST["email"];
@@ -25,16 +53,24 @@ class SecurityController extends AppController {
             $user = $userRepository->getUser($email);
         }
         catch (UserNotFoundException $e) {
+            $this->incrementLoginAttempts($_SESSION['login_attempts']);
+            $_SESSION['last_failed_login'] = time();
             return $this->render('login', ['messages' => [$e->getMessage()]]);
         }
 
         if ($user->getEmail() !== $email) {
+            $this->incrementLoginAttempts($_SESSION['login_attempts']);
+            $_SESSION['last_failed_login'] = time();
             return $this->render('login', ['messages' => ['User with this email does not exist!']]);
         }
 
         if (!password_verify($password, $user->getPassword())) {
+            $this->incrementLoginAttempts($_SESSION['login_attempts']);
+            $_SESSION['last_failed_login'] = time();
             return $this->render('login', ['messages' => ['Wrong password!']]);
         }
+
+        $_SESSION['login_attempts'] = 0;
 
         $_SESSION['user'] = [
             'id_user' => $user->getIdUser(),
