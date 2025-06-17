@@ -77,3 +77,10 @@ DB_USERNAME=docker
 DB_PASSWORD=docker  
 DB_HOST=db  
 DB_DATABASE=db
+
+## Diagram ERD
+
+![Diagram ERD](./wiki/screenshots/BikeBase%20diagram%20ERD.png)
+
+Powyższy diagram prezentuje bazę danych, do której zapisywane są dane z aplikacji.  
+W celu ułatwienia przeglądania danych zawartych w bazie, dodano cztery różne widoki. Ponadto, aby pokazać możliwości dla dalszego rozwoju bazy, dodano triggera sprawdzającego poprawność ceny części przed dodaniem jej do bazy.
